@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	   xmlns:context="http://www.springframework.org/schema/context"
+	   xsi:schemaLocation=
+	   	"http://www.springframework.org/schema/beans  
+	   	 http://www.springframework.org/schema/beans/spring-beans.xsd
+	   	 http://www.springframework.org/schema/context
+	   	 http://www.springframework.org/schema/context/spring-context.xsd"		
+	   >
+	   
+	   <!-- 의존객체 자동주입 . 생성자나 setter없이 알아서 만들어짐-->
+	   <context:annotation-config />
+	   
+	   <bean id = "memberDao" class="main.model.MemberDAO"/> 
+	   <bean id = "print" class="main.service.MemberPrinter"/>  
+	   <bean id = "memberRegisterService" class="main.service.MemberRegisterService"></bean>	   	   		
+	   <bean id = "memberListPrinterService" class="main.service.MemberListPrinterService"></bean>
+	   <bean id = "changePasswordService" class="main.service.ChangePasswordService"></bean>	   	
+	   <bean id = "memberInfoPrinterService" class="main.service.MemberInfoPrinterService"></bean>	 
+</beans>
