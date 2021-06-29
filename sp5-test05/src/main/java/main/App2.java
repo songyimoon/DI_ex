@@ -2,26 +2,23 @@ package main;
 
 import java.util.Scanner;
 
+import org.springframework.context.support.GenericXmlApplicationContext;
+
 import main.command.RegisterRequestCommand;
-import main.model.CachedMemberDAO;
-import main.model.MemberDAO;
-import main.service.Assembler;
 import main.service.ChangePasswordService;
 import main.service.MemberInfoPrinterService;
 import main.service.MemberListPrinterService;
-import main.service.MemberPrinter;
 import main.service.MemberRegisterService;
 
-public class App { // controller가 됨. 	
+public class App2 { 
 	
-	// assembler객체를 이용해서 의존객체를 생성
-	private static Assembler assembler = new Assembler();
+	private static GenericXmlApplicationContext ctx;
 	
 	public static void main(String[] args) {
+		ctx=new GenericXmlApplicationContext("classpath:appCtx3.xml");
 		Scanner sc = new Scanner(System.in);
 
 		while(true) {
-	
 			System.out.println("명령어를 입력하세요: ");
 			String command = sc.nextLine();
 			if(command.startsWith("new ")) { 
@@ -42,7 +39,7 @@ public class App { // controller가 됨.
 					continue;
 				}
 				// 의존객체	
-				MemberRegisterService mrs = assembler.getMemberRegisterService();
+				MemberRegisterService mrs = ctx.getBean("memberRegisterService", MemberRegisterService.class);
 				mrs.regist(req); 
 				
 			}else if(command.startsWith("change ")) {
@@ -53,11 +50,11 @@ public class App { // controller가 됨.
 					continue;
 				}
 				// 의존객체			
-				ChangePasswordService chpws = assembler.getChangePasswordService();			
+				ChangePasswordService chpws = ctx.getBean("changePasswordService",ChangePasswordService.class);
 				chpws.changePassword(arg[1],arg[2],arg[3]);
 			} else if(command.equals("list")) {
 				// 의존 객체 
-				MemberListPrinterService lp = new MemberListPrinterService();
+				MemberListPrinterService lp = ctx.getBean("memberListPrinterService",MemberListPrinterService.class);
 				lp.printAll();
 			} else if (command.startsWith("info")) {
 				String [] arg = command.split(" ");
@@ -67,12 +64,13 @@ public class App { // controller가 됨.
 					continue;
 				}
 				// 의존객체
-				MemberInfoPrinterService mips= assembler.getMemberInfoPrinterService();
+				MemberInfoPrinterService mips= ctx.getBean("memberInfoPrinterService",MemberInfoPrinterService.class);
 				mips.printMemberInfo(arg[1]);
 				
 			} else if(command.equals("exit")) {
 				System.out.println("프로그램이 종료되었습니다.");
 				System.exit(0);
+				sc.close();
 			} else {
 				printHelp();
 			}	
