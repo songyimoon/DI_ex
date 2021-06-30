@@ -15,7 +15,7 @@ public class App {
 	private static GenericXmlApplicationContext ctx;
 	
 	public static void main(String[] args) {
-		ctx=new GenericXmlApplicationContext("classpath:appCtx.xml");
+		ctx=new GenericXmlApplicationContext("classpath:appCtx.xml"); // classpath: src>main>resources
 		Scanner sc = new Scanner(System.in);
 
 		while(true) {

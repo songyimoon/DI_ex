@@ -16,6 +16,7 @@
 	   </bean>
 	   <bean id = "changePasswordService" class="main.service.ChangePasswordService">		
 	   		<property name="memberDao" ref="memberDao"></property>
+	   		
 	   </bean>	   	
 	   <bean id = "memberInfoPrinterService" class="main.service.MemberInfoPrinterService">	
 	   		<property name="memberDao" ref="memberDao"/>
