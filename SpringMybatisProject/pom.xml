@@ -24,7 +24,7 @@
   
   <dependencies>
   
-      <!-- 스프링  -->
+    <!-- 스프링  -->
     <dependency>
        <groupId>org.springframework</groupId>
        <artifactId>spring-context</artifactId>
@@ -35,7 +35,7 @@
       <artifactId>spring-webmvc</artifactId>
       <version>${org.springframework-version}</version>
    </dependency>  
-    <!-- was -->
+   <!-- was -->
    <dependency>
       <groupId>javax.servlet.jsp</groupId>
       <artifactId>jsp-api</artifactId>
@@ -55,6 +55,7 @@
       <artifactId>jstl</artifactId>
       <version>1.2</version>
    </dependency>
+   
    <!-- jdbc -->
    <dependency>
        <groupId>org.springframework</groupId>

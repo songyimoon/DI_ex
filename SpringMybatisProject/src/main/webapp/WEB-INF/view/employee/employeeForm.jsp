@@ -1,10 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>employee Form</title>
+<style type="text/css">
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
+*{
+  color: black;
+}
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+}
+table{
+  font-size: 15px/1;
+  width: 600px;
+  border: 1px solid;
+  border-spacing: 8px;
+
+</style>
  
  <script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery/jquery-3.2.1.js"></script>
     <script>
@@ -38,56 +55,70 @@
     </script>
 </head>
 <body>
-<form action="empJoin.em" method="get" name="frm" id="frm">
-<table border = 1 align = "center">
+<form:form action="empJoin" method="post" name="frm" modelAttribute="employeeCommand">
+<table align = "center">
 	<tr><td>사원번호</td>
-		<td>
-			<input type="text" name="employeeId" value="${empNo }"/>
+		<td>	
+			<form:input path="employeeId"/>
+			<form:errors path="employeeId"/>
 			</td></tr>
 	<tr><td>사원아이디</td>
 		<td>
-			<input type="text" name="empUserid" id="empUserId"/>
+
+			<form:input path="empUserId"/>
+			<form:errors path="empUserId"/>
 			</td></tr>
 	<tr><td>비밀번호</td>
 		<td>
-			<input type="password" name="empPw" id="empPw"/>
+			<form:password path="empPw"/>
+			<form:errors path="empPw"/>
 		</td></tr>
 	<tr><td>비밀번호 확인</td>
 		<td>
-			<input type="password" name="empPwCon" id="empPwCon"/>
+		
+			<form:password path="empPwCon"/>
+			<form:errors path="empPwCon"/>
 		</td></tr>
 	<tr><td>이름</td>
 		<td>
-			<input type="text" name="empName"/>
+			<form:input path="empName"/>
+			<form:errors path="empName"/>
 		</td></tr>
 	<tr><td>입사일</td>
 		<td>
 			<input type="date" name="hireDate"/>
+			<form:errors path="hireDate"/>
 		</td></tr>
 	<tr><td>직무</td>
 		<td>
-			<input type="text" name="jobId"/>
+			<form:input path="jobId"/>
+			<!-- <input type="text" name="jobId" value="${jobId}" -->
+			<form:errors path="jobId"/>
 		</td></tr>
 	<tr><td>연락처</td>
 		<td>
-			<input type="text" name="PhNumber" placeholder="010-1234-1234"/>
+			<form:input path="PhNumber" placeholder="010-1234-1234"/>
+			<form:errors path="PhNumber"/>
 		</td></tr>
 	<tr><td>사무실번호</td>
 		<td>
-			<input type="text" name="officeNumber" placeholder="02-1234-1234"/>
+			<form:input path="officeNumber" placeholder="02-1234-1234"/>
+			<form:errors path="officeNumber"/>
 		</td></tr>
 	<tr><td>이메일</td>
 		<td>
-			<input type="text" name="empEmail"/>
+			<form:input path="empEmail"/>
+			<form:errors path="empEmail"/>
 		</td></tr>
 	<tr><td>주소</td>
 		<td>
-			<input type="text" name="empAddress"/>
+			<form:input path="empAddress"/>
+			<form:errors path="empAddress"/>
 		</td></tr>
 	<tr><td colspan="2">
 			<input type="submit" value="등록"/>
 		</td></tr>	
 </table>
-</form>
+</form:form>
 </body>
 </html>
