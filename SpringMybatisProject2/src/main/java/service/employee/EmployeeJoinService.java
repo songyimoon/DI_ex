@@ -8,12 +8,16 @@ import model.EmployeeDTO;
 import repository.EmployeeRepository;
 
 public class EmployeeJoinService {
+	
 	@Autowired
 	EmployeeRepository employeeRepository;
 	@Autowired
 	BCryptPasswordEncoder bCryptPasswordEncoder;
-	public void empInsert(EmployeeCommand employeeCommand) {
+	
+	public void empInsert(EmployeeCommand employeeCommand) { // insert하려면 employeeCommand를 받아와야함. 매개변수 넣어주기.
+		// service에서 repository로 전달하기 위해서는 dto가 필요하다.
 		EmployeeDTO dto = new EmployeeDTO();
+		dto.setEmpAddress(employeeCommand.getEmpAddress());
 		dto.setEmpEmail(employeeCommand.getEmpEmail());
 		dto.setEmpAddress(employeeCommand.getEmpAddress());
 		dto.setEmployeeId(employeeCommand.getEmployeeId());

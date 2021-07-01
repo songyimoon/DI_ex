@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>employee Form</title>
+
 <style type="text/css">
 @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap');
+
 *{
   color: black;
 }
@@ -19,14 +21,15 @@ table{
   width: 600px;
   border: 1px solid;
   border-spacing: 8px;
+
 </style>
- 
+
 </head>
 <body>
 <form:form action="empJoin" method="post" name="frm" modelAttribute="employeeCommand">
 <table align = "center">
 	<tr><td>사원번호</td>
-		<td>	
+		<td>
 			<form:input path="employeeId"/>
 			<form:errors path="employeeId"/>
 			</td></tr>
@@ -42,7 +45,6 @@ table{
 		</td></tr>
 	<tr><td>비밀번호 확인</td>
 		<td>
-		
 			<form:password path="empPwCon"/>
 			<form:errors path="empPwCon"/>
 		</td></tr>
@@ -59,7 +61,6 @@ table{
 	<tr><td>직무</td>
 		<td>
 			<form:input path="jobId"/>
-			<!-- <input type="text" name="jobId" value="${jobId}" -->
 			<form:errors path="jobId"/>
 		</td></tr>
 	<tr><td>연락처</td>

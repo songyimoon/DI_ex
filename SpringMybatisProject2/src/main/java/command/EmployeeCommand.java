@@ -1,19 +1,27 @@
-package Model;
+package command;
 
 import java.util.Date;
 
-public class EmployeeDTO {
+import org.springframework.format.annotation.DateTimeFormat;
+
+public class EmployeeCommand {
 
 	String employeeId;
 	String empUserId;
 	String empPw;
+	String empPwCon;
 	String empName;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date hireDate;
 	String jobId;
-	String PhNumber;
+	String phNumber;
 	String officeNumber;
 	String empEmail;
 	String empAddress;
+	
+	public boolean isEmpPwEqualsEmpPwCon() {
+		return empPw.equals(empPwCon);
+	}
 	
 	public String getEmployeeId() {
 		return employeeId;
@@ -32,6 +40,12 @@ public class EmployeeDTO {
 	}
 	public void setEmpPw(String empPw) {
 		this.empPw = empPw;
+	}
+	public String getEmpPwCon() {
+		return empPwCon;
+	}
+	public void setEmpPwCon(String empPwCon) {
+		this.empPwCon = empPwCon;
 	}
 	public String getEmpName() {
 		return empName;
@@ -52,10 +66,10 @@ public class EmployeeDTO {
 		this.jobId = jobId;
 	}
 	public String getPhNumber() {
-		return PhNumber;
+		return phNumber;
 	}
 	public void setPhNumber(String phNumber) {
-		PhNumber = phNumber;
+		this.phNumber = phNumber;
 	}
 	public String getOfficeNumber() {
 		return officeNumber;
@@ -63,19 +77,21 @@ public class EmployeeDTO {
 	public void setOfficeNumber(String officeNumber) {
 		this.officeNumber = officeNumber;
 	}
+
 	public String getEmpEmail() {
 		return empEmail;
 	}
+
 	public void setEmpEmail(String empEmail) {
 		this.empEmail = empEmail;
 	}
+
 	public String getEmpAddress() {
 		return empAddress;
 	}
 	public void setEmpAddress(String empAddress) {
 		this.empAddress = empAddress;
 	}
-	
 	
 	
 }

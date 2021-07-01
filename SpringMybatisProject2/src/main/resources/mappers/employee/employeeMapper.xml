@@ -10,6 +10,7 @@
 </select>
 
 
+
 <insert id="empInsert" parameterType="model.EmployeeDTO">
 		insert into employees (EMPLOYEE_ID, EMP_USERID, EMP_PW, EMP_NAME, HIRE_DATE, JOB_ID, PH_NUMBER, OFFICE_NUMBER, EMP_EMAIL, EMP_ADDRESS) 
 		values (#{employeeId},#{empUserId},#{empPw},#{empName},#{hireDate},#{jobId},#{PhNumber},#{officeNumber},#{empEmail},#{empAddress})
