@@ -6,9 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import command.EmployeeCommand;
+import service.employee.EmployeeInfoService;
 import service.employee.EmployeeJoinService;
+import service.employee.EmployeeListService;
+import service.employee.EmployeeModifyService;
 import service.employee.EmployeeNumService;
 import validator.EmployeeCommandValidator;
 
@@ -19,11 +23,20 @@ public class EmployeeController {
 	EmployeeNumService employeeNumService;
 	@Autowired
 	EmployeeJoinService employeeJoinService;
-	
+	@Autowired
+	EmployeeListService employeeListService;
+	@Autowired
+	EmployeeInfoService employeeInfoService;
+	@Autowired
+	EmployeeModifyService employeeModifyService;
 	@RequestMapping(value = "empList", method = RequestMethod.GET )
-	public String empList() {
+	public String empList(Model model) {
+		employeeListService.empList(model);
 		return "employee/employeeList"; // 복사해옴
 	}
+	
+	
+	
 	@RequestMapping(value = "empRegist", method = RequestMethod.GET) // 새로 등록
 	public String empRegist(Model model, EmployeeCommand employeeCommand) {
 		employeeNumService.empNo(model, employeeCommand);
@@ -40,4 +53,20 @@ public class EmployeeController {
 		employeeJoinService.empInsert(employeeCommand); // 위에서 오류 확인 모두 한 후에, return하기 전에 입력해주는걸로 한다.
 		return "redirect:empList"; // 회원등록을 모두 완료한 후에, 리스트 페이지로 
 	}
+	@RequestMapping("empInfo")
+	public String empInfo(@RequestParam(value = "empId") String empId, Model model) { // value에 url에 있는 empId 가져온다. 이 받아온 값 저장하는 변수 String empId
+		employeeInfoService.empInfo(empId, model);
+		return "employee/employeeInfo";
+	}
+	@RequestMapping("empModify")
+	public String empModify(@RequestParam(value = "empId") String empId, Model model) {
+		employeeInfoService.empInfo(empId, model); // 상세정보가져오는건 Info 써먹음
+		return "employee/employeeModify";
+	}
+	@RequestMapping("empModifyOk")
+	public String empModifyOk(EmployeeCommand employeeCommand) {
+		employeeModifyService.empModify(employeeCommand);
+		return "redirect:empList";
+	}
+	
 }

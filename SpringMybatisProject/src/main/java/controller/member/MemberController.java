@@ -46,7 +46,12 @@ public class MemberController {
 			return "member/memberForm";
 		}
 		memberJoinService.memJoin(memberCommand);
-		return "redirect:main";
+		return "redirect:memList";
+	}
+	
+	@RequestMapping(value = "memList", method = RequestMethod.GET)
+	public String memList() {
+		return "member/memberList";
 	}
 	
 }

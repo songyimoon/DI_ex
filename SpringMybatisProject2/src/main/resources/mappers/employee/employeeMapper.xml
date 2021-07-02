@@ -4,17 +4,36 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.employeeMapper">
 
+<sql id="baseColumn">
+		EMPLOYEE_ID employeeId, EMP_USERID empUserId, EMP_PW empPw, EMP_NAME empName, 
+		HIRE_DATE hireDate, JOB_ID jobId, PH_NUMBER PhNumber, OFFICE_NUMBER officeNumber, 
+		EMP_EMAIL empEmail, EMP_ADDRESS empAddress
+</sql>
 
 <select id="empNo" resultType="string">
 		select nvl(max(employee_id),0) + 1 from employees
 </select>
 
-
-
 <insert id="empInsert" parameterType="model.EmployeeDTO">
 		insert into employees (EMPLOYEE_ID, EMP_USERID, EMP_PW, EMP_NAME, HIRE_DATE, JOB_ID, PH_NUMBER, OFFICE_NUMBER, EMP_EMAIL, EMP_ADDRESS) 
 		values (#{employeeId},#{empUserId},#{empPw},#{empName},#{hireDate},#{jobId},#{PhNumber},#{officeNumber},#{empEmail},#{empAddress})
 </insert>
+
+<select id = "empList" resultType="model.EmployeeDTO">
+		select <include refid="baseColumn"/>
+ 		from employees
+</select>
+
+<select id="empInfo" parameterType="string" resultType="model.EmployeeDTO">
+		select <include refid="baseColumn"/>
+ 		from employees
+ 		where EMPLOYEE_ID = #{empId}
+</select>
+
+<update id="empModify" parameterType="model.EmployeeDTO">
+		update employees set JOB_ID = #{jobId}, PH_NUMBER = #{PhNumber}, OFFICE_NUMBER = #{officeNumber}, EMP_EMAIL = #{empEmail}, EMP_ADDRESS = #{empAddress} 
+		where EMPLOYEE_ID = #{employeeId}
+</update>
 
 
 </mapper>
