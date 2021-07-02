@@ -11,7 +11,6 @@ import command.EmployeeCommand;
 public class EmployeeCommandValidator implements Validator{
 
 	public boolean supports(Class<?> clazz) {
-		
 		return false;
 	}
 

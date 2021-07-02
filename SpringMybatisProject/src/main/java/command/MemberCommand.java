@@ -8,6 +8,7 @@ public class MemberCommand {
 
 	String memId;
 	String memPw;
+	String memPwCon;
 	String memName;
 	String postNumber;
 	String memAddress;
@@ -20,7 +21,15 @@ public class MemberCommand {
 	String memEmail;
 	String memEmailCk;
 	
-
+	public boolean isMemPwEqualsMemPwCon() {
+		return memPw.equals(memPwCon);
+	}
+	public String getMemPwCon() {
+		return memPwCon;
+	}
+	public void setMemPwCon(String memPwCon) {
+		this.memPwCon = memPwCon;
+	}
 	public String getMemId() {
 		return memId;
 	}

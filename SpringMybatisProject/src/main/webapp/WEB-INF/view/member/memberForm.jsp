@@ -81,74 +81,92 @@ table{
 <form:form action="memJoin" method="post" name="frm" modelAttribute="memberCommand">
 <input type="hidden" name="dongaddress" id="sample4_extraAddress" placeholder="참고항목">
 <table align="center">
-<tr>
-	<td>아이디</td>
-	<td><input type="text" name="memId"></td>
+<tr><td>아이디</td>
+	<td>
+		<form:input path="memId"/>
+		<form:errors path="memId"/>
+	</td>	
 </tr>
-
-<tr>
-	<td>비밀번호</td>
-	<td><input type="password" name="memPw"></td>
+<tr><td>비밀번호</td>
+	<td><form:password path="memPw"/>
+		<form:errors path="memPw"/>
+	</td>
 </tr>
 
 <tr>
 	<td>비밀번호확인</td>
-	<td><input type="password" name="memPwCon"></td>
+	<td><form:password path="memPwCon"/>
+		<form:errors path="memPwCon"/></td>
 </tr>
 
 <tr>
 	<td>이름</td>
-	<td><input type="text" name="memName"></td>
+	<td><form:input path="memName"/>
+		<form:errors path="memName"/></td>
 </tr>
 
 <tr>
 	<td>우편번호</td>
-	<td><input type="text" name="postNumber" id="sample4_postcode" readonly="readonly"></td>
+	<td><form:input path="postNumber" id="sample4_postcode" readonly="true"/>
+		<form:errors path="postNumber"/></td>
 </tr>
 
 <tr>
 	<td>주소</td>
-	<td><input type="text" name="memAddress" id="sample4_roadAddress" size="30" readonly="readonly">
+	<td>
+		<form:input path="memAddress" id="sample4_roadAddress" size="30" readonly="true"/>
 		<a href="javascript:sample4_execDaumPostcode();">주소 검색</a>
+		<form:errors path="memAddress"/>
 	</td>
 </tr>
 
 <tr>
 	<td>상세주소</td>
-	<td><input type="text" name="detailAdd"></td>
+	<td><form:input path="detailAdd"/>
+		<form:errors path="detailAdd"/></td>
 </tr>
 
 <tr>
 	<td>연락처</td>
-	<td><input type="text" name="memPhone"></td>
+	<td><form:input path="memPhone"/>
+		<form:errors path="memPhone"/></td>
 </tr>
 
 <tr>
 	<td>이메일</td>
-	<td><input type="text" name="memEmail"></td>
+	<td><form:input path="memEmail"/>
+		<form:errors path="memEmail"/></td>
 </tr>
 
 <tr>
 	<td>생년월일</td>
-	<td><input type="date" name="memBirth"></td>
+	<td><input type="date" name="memBirth">
+		<form:errors path="memBirth"/></td>
 </tr>
 
 <tr>
 	<td>성별</td>
-	<td><input type="radio" name="memGender" value="M" checked>남자
-		<input type="radio" name="memGender" value="F">여자
+	<td>
+		<form:radiobutton path="memGender" value="M"/>남자
+		<form:radiobutton path="memGender" value="M"/>여자
+
+		<form:errors path="memGender"/>
 	</td>
 </tr>
 
 <tr>
 	<td>계좌번호</td>
-	<td><input type="text" name="memAccount"></td>
+	<td><form:input path="memAccount"/>
+		<form:errors path="memAccount"/></td>
 </tr>
 
 <tr>
 	<td>이메일수신여부</td>
-	<td><input type="radio" name="memEmailCk" value="Y" checked>예
-		<input type="radio" name="memEmailCk" value="N">아니오
+	<td>
+	
+		<form:radiobutton path="memEmailCk" value="Y"/>예
+		<form:radiobutton path="memEmailCk" value="N"/>아니오
+		<form:errors path="memEmailCk"/>
 	</td>
 </tr>
 
