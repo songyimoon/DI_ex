@@ -25,7 +25,7 @@ table{
 </style>
 </head>
 <body>
-<form action="empModifyOk" method="get" name="frm" id="frm">
+<form action="empModifyOk" method="post" name="frm" id="frm">
 <input type="hidden" name="employeeId" value="${emp.employeeId }"/> 
 <!-- 화면에는 보이지 않지만, employeeId를 키처럼 사용하는 것 -->
 <table align = "center">

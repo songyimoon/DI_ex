@@ -10,12 +10,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.EmployeeCommand;
+import model.AuthInfoDTO;
 import service.employee.EmployeeDeleteService;
 import service.employee.EmployeeInfoService;
 import service.employee.EmployeeJoinService;
 import service.employee.EmployeeListService;
 import service.employee.EmployeeNumService;
 import service.employee.EmployeeUpdateService;
+import service.main.LoginService;
 import validator.EmployeeCommandValidator;
 
 @Controller
@@ -33,6 +35,7 @@ public class EmployeeController {
 	EmployeeUpdateService employeeUpdateService;
 	@Autowired
 	EmployeeDeleteService employeeDeleteService;
+	
 	@RequestMapping("empDelete")
 	public String empDelete(@RequestParam(value = "empId") String empId) {
 		employeeDeleteService.empDelete(empId);
@@ -63,20 +66,24 @@ public class EmployeeController {
 		return "employee/employeeList";
 	}
 	
-
-
 	@RequestMapping(value = "empRegist", method = RequestMethod.GET)
 	public String empRegist(Model model, EmployeeCommand employeeCommand) {
 		employeeNumService.empNo(model,employeeCommand);
 		return "employee/employeeForm";
 	}
 	
+	@Autowired
+	LoginService loginService;	
 	@RequestMapping(value = "empJoin", method = RequestMethod.POST)
 	public String empJoin(EmployeeCommand employeeCommand, Errors errors, Model model) {
-
 		new EmployeeCommandValidator().validate(employeeCommand, errors);
 		if(errors.hasErrors()) {
 			return "employee/employeeForm"; 	
+		}
+		AuthInfoDTO authInfo = loginService.login(employeeCommand.getEmpUserId(), employeeCommand.getEmpPw());
+		if(authInfo != null) {
+			errors.rejectValue("empUserId","duplicate");
+			return "employee/employeeForm";
 		}
 		employeeJoinService.empInsert(employeeCommand);
 		return "redirect:empList";
