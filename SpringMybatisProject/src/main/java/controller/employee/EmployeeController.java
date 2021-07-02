@@ -7,10 +7,15 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import command.EmployeeCommand;
+import service.employee.EmployeeDeleteService;
+import service.employee.EmployeeInfoService;
 import service.employee.EmployeeJoinService;
+import service.employee.EmployeeListService;
 import service.employee.EmployeeNumService;
+import service.employee.EmployeeUpdateService;
 import validator.EmployeeCommandValidator;
 
 @Controller
@@ -20,27 +25,58 @@ public class EmployeeController {
 	EmployeeNumService employeeNumService;
 	@Autowired
 	EmployeeJoinService employeeJoinService;
+	@Autowired
+	EmployeeListService employeeListService;
+	@Autowired
+	EmployeeInfoService employeeInfoService;
+	@Autowired
+	EmployeeUpdateService employeeUpdateService;
+	@Autowired
+	EmployeeDeleteService employeeDeleteService;
+	@RequestMapping("empDelete")
+	public String empDelete(@RequestParam(value = "empId") String empId) {
+		employeeDeleteService.empDelete(empId);
+		return "redirect:empList";
+	}
 	
-	// 직원리스트
+	@RequestMapping(value = "empModifyOk", method = RequestMethod.POST)
+	public String empModifyOK(EmployeeCommand employeeCommand) {
+		employeeUpdateService.empUpdate(employeeCommand);
+		return "redirect:empList";
+	}
+	
+	@RequestMapping("empModify")
+	public String empModify(@RequestParam(value="empId") String empId, Model model) {
+		employeeInfoService.empInfo(empId, model);
+		return "employee/employeeModify";
+	}
+	
+	@RequestMapping("empInfo")
+	public String empInfo(@RequestParam(value = "empId") String empId, Model model) {
+		employeeInfoService.empInfo(empId, model);
+		return "employee/employeeInfo";
+	}
+
 	@RequestMapping(value = "empList", method = RequestMethod.GET)
-	public String empList() {
+	public String empList(Model model) {
+		employeeListService.empList(model);
 		return "employee/employeeList";
 	}
-	// 직원등록페이지
+	
+
+
 	@RequestMapping(value = "empRegist", method = RequestMethod.GET)
 	public String empRegist(Model model, EmployeeCommand employeeCommand) {
 		employeeNumService.empNo(model,employeeCommand);
 		return "employee/employeeForm";
 	}
 	
-	// 등록페이지 제출 후 DB 추가
-	@RequestMapping(value = "empJoin", method = RequestMethod.POST) // url로 노출되지 않도록 (직접 주소로 접근하는 것)
+	@RequestMapping(value = "empJoin", method = RequestMethod.POST)
 	public String empJoin(EmployeeCommand employeeCommand, Errors errors, Model model) {
-		// commamd객체는 html로부터 넘어온 값을 저장한다.
-		// 그러므로 @RequestParam을 사용하지 않아도 된다.
+
 		new EmployeeCommandValidator().validate(employeeCommand, errors);
 		if(errors.hasErrors()) {
-			return "employee/employeeForm"; // 에러가 발생했다면, empJoin에서 employeeForm 페이지가 보이도록		
+			return "employee/employeeForm"; 	
 		}
 		employeeJoinService.empInsert(employeeCommand);
 		return "redirect:empList";
