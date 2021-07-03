@@ -25,10 +25,11 @@ public class MemberCommandValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "memAddress", "required");
 		ValidationUtils.rejectIfEmpty(errors, "detailAdd", "required");
 		ValidationUtils.rejectIfEmpty(errors, "memPhone", "required");
+		ValidationUtils.rejectIfEmpty(errors, "memEmail", "required");
 		ValidationUtils.rejectIfEmpty(errors, "memBirth", "required");
 		ValidationUtils.rejectIfEmpty(errors, "memGender", "required");
 		ValidationUtils.rejectIfEmpty(errors, "memAccount", "required");
-		ValidationUtils.rejectIfEmpty(errors, "memEmail", "required");
 		ValidationUtils.rejectIfEmpty(errors, "memEmailCk", "required");
 	}
+
 }

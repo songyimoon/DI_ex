@@ -4,9 +4,8 @@
 	xsi:schemaLocation="
  	  	 http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans.xsd
-         ">    
-     <bean class="controller.main.MainController" />
-     <bean id="loginService" class="service.main.LoginService"/>
-     <bean id="loginRepository" class="repository.LoginRepository"/>
-     
+         ">
+	<bean class="controller.member.MemberController"/>
+	<bean id="memberJoinService" class="service.member.MemberJoinService"/>
+	<bean id="memberrepository" class="repository.MemberRepository"/>
 </beans>

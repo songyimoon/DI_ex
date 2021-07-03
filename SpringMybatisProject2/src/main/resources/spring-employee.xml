@@ -12,4 +12,5 @@
 	<bean id="employeeListService" class="service.employee.EmployeeListService"/>
 	<bean id="employeeInfoService" class="service.employee.EmployeeInfoService"/>
 	<bean id="employeeModifyService" class="service.employee.EmployeeModifyService"/>
+	<bean id="employeeDeleteService" class="service.employee.EmployeeDeleteService"/>
 </beans>
