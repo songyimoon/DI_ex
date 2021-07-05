@@ -14,7 +14,8 @@ public class MemberCommandValidator implements Validator {
 
 	public void validate(Object target, Errors errors) {
 		MemberCommand memberCommand = (MemberCommand)target;
-		if(!memberCommand.isMemPwEqualsMemPwCon()) {
+		if(memberCommand.getMemPw()!=null && memberCommand.getMemPwCon() != null) {
+			if(!memberCommand.isMemPwEqualsMemPwCon()) {
 			errors.rejectValue("memPwCon", "noMatch");
 		}
 		ValidationUtils.rejectIfEmptyOrWhitespace(errors, "memId", "required");
@@ -27,8 +28,8 @@ public class MemberCommandValidator implements Validator {
 		ValidationUtils.rejectIfEmpty(errors, "memPhone", "required");
 		ValidationUtils.rejectIfEmpty(errors, "memBirth", "required");
 		ValidationUtils.rejectIfEmpty(errors, "memGender", "required");
-		ValidationUtils.rejectIfEmpty(errors, "memAccount", "required");
 		ValidationUtils.rejectIfEmpty(errors, "memEmail", "required");
 		ValidationUtils.rejectIfEmpty(errors, "memEmailCk", "required");
+		}
 	}
 }

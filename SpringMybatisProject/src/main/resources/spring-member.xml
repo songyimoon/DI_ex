@@ -6,5 +6,10 @@
          http://www.springframework.org/schema/beans/spring-beans.xsd">
 	<bean class="controller.member.MemberController"></bean>
 	<bean id="memberJoinService" class="service.member.MemberJoinService"/>       
-	<bean id="memberRepository" class="repository.MemberRepository"/>       
+	<bean id="memberRepository" class="repository.MemberRepository"/> 
+	      
+	<bean class="controller.member.MemberInfoController"/>
+	<bean id="memberListService" class="service.member.MemberListService"/>
+	<bean id="memberUpdateService" class="service.member.MemberUpdateService"/>
+	<bean id="memberDeleteService" class="service.member.MemberDeleteService"/>
 </beans>

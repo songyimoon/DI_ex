@@ -1,9 +1,12 @@
 package repository;
 
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import command.MemberCommand;
 import model.MemberDTO;
 
 public class MemberRepository {
@@ -16,5 +19,22 @@ public class MemberRepository {
 		statement = namespace + ".memInsert";
 		int i = sqlSession.insert(statement,dto);
 		System.out.println(i+"개 행이 입력되었습니다.");
+	}
+	
+	public List<MemberDTO> memList(String memId) {
+		statement = namespace + ".memList";
+		return sqlSession.selectList(statement,memId);
+		
+	}
+	public void memUpdate(MemberDTO dto) {
+		statement = namespace + ".memUpdate";
+		int i = sqlSession.update(statement,dto);
+		System.out.println(i+"개 행이 수정되었습니다.");
+	}
+	public void memDel(String memId) {
+		statement = namespace + ".memDel";
+		int i = sqlSession.delete(statement, memId);
+		System.out.println(i+"개 행이 삭제되었습니다.");
+		
 	}
 }
