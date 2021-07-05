@@ -24,7 +24,6 @@ public class MemberRepository {
 	public List<MemberDTO> memList(String memId) {
 		statement = namespace + ".memList";
 		return sqlSession.selectList(statement,memId);
-		
 	}
 	public void memUpdate(MemberDTO dto) {
 		statement = namespace + ".memUpdate";

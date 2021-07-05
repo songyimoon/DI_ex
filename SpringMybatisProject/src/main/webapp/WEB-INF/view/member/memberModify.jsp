@@ -82,7 +82,6 @@ table{
 
 <form action="../memModifyOk" method="post" name="frm">
 <input type="hidden" name="memId" value="${lists[0].memId }"/> 
-<input type="hidden" name="memBirth" value="<fmt:formatDate value="${lists[0].memBirth }" type="date" pattern="yyyy-MM-dd"/>"/> 
 
 <table align="center">
 <tr>
@@ -124,7 +123,7 @@ table{
 
 <tr>
 	<td>생년월일</td>
-	<td><input type="date" name="memBirth" value="${lists[0].memBirth }"></td>
+	<td><fmt:formatDate value="${lists[0].memBirth }" type="date" pattern="yyyy-MM-dd"/></td>
 </tr>
 
 <tr>
