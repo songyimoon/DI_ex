@@ -33,22 +33,21 @@ table {
 		<!-- 로그인 안된 경우 -->
 		<form:form action="login" method="post" name="frm" modelAttribute="loginCommand">
 
-			<table align="center" width="400">
+			<table align="center" width="500">
 				<tr>
 					<td colspan="3" align="center">아이디저장 | 자동로그인</td>
 				</tr>
 
 				<tr>
-					<td>아이디</td>
-					<td><form:input path="userId" />
+					<th>아이디</th>
+					<td align="center"><form:input path="userId" />
 						<form:errors path="userId" /></td>
-					<td rowspan="2"><input type="image" src="images/login64.png"
-						width="60" alt="login" /></td>
+					<td rowspan="2"><input type="image" src="images/login64.png" width="60" alt="login" /></td>
 				</tr>
 
 				<tr>
-					<td>비밀번호</td>
-					<td><form:password path="userPw" />
+					<th>비밀번호</th>
+					<td align="center"><form:password path="userPw" />
 						<form:errors path="userPw" /></td>
 				</tr>
 

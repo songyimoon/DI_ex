@@ -34,6 +34,8 @@ public class MemberRepository {
 		int i = sqlSession.delete(statement, memId);
 		System.out.println(i+"개 행이 삭제되었습니다.");	
 	}
+	
+	
 	public MemberDTO memMypageInfo(String memId) {
 		statement = namespace + ".memMypageInfo";
 		return sqlSession.selectOne(statement,memId);

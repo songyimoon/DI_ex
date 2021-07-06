@@ -29,16 +29,14 @@ public class MemberMyPageController {
 	@Autowired
 	MemMypageInfoModifyOkService memMypageInfoModifyOkService;
 	@Autowired
-	BCryptPasswordEncoder bcryptPasswordEncoder;
+	MemberPwConfirmService memberPwConfirmService;
 	@Autowired
 	MemberPwUpdateService memberPwUpdateService;
-	@Autowired
-	MemberPwConfirmService memberPwConfirmService;
 	@Autowired
 	MemberOutService memberOutService;
 	
 	@RequestMapping("myPage")
-	public String myPage(HttpSession session, Model model) { // 나의 정보를 가져오기 위해서 authInfo필요하고, authInfo는 세션에 있음
+	public String myPage() {
 		return "member/memMyPage";
 	}
 	@RequestMapping("memMyPageInfo")
@@ -83,6 +81,10 @@ public class MemberMyPageController {
 		}
 		return "redirect:/";
 	}
+	
+	
+	
+	
 	@RequestMapping("memOut")
 	public String memOut() {
 		return "member/memOut";

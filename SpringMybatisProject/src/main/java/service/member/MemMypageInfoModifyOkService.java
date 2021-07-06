@@ -23,7 +23,7 @@ public class MemMypageInfoModifyOkService {
 		AuthInfoDTO authInfo = (AuthInfoDTO) session.getAttribute("authInfo");
 		String memId = authInfo.getUserId();		
 		memberRepository.memMypageInfo(memId);
-		
+		 
 		if(bcryptPasswordEncoder.matches(memberCommand.getMemPw(), authInfo.getUserPw())) {	
 		MemberDTO dto = new MemberDTO();
 		dto.setDetailAdd(memberCommand.getDetailAdd());
@@ -36,8 +36,7 @@ public class MemMypageInfoModifyOkService {
 		dto.setMemId(memberCommand.getMemId());
 		memberRepository.memMypageInfoModifyOk(dto);		
 		}else {
-			errors.rejectValue("memPw", "notPw");
-			
+			errors.rejectValue("memPw", "notPw");		
 		}
 		
 	}

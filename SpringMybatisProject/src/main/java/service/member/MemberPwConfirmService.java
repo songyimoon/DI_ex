@@ -20,7 +20,5 @@ public class MemberPwConfirmService {
 			model.addAttribute("pwFail", "비밀번호가 틀립니다.");
 			return "member/memPwChange";
 		}
-
 	}
-
 }

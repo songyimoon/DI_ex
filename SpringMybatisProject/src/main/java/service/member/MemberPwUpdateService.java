@@ -29,8 +29,7 @@ public class MemberPwUpdateService {
 			dto.setMemPw(bcryptPasswordEncoder.encode(memberCommand.getMemPw()));
 			memberRepository.memPwUpdate(dto);	
 		}else {
-			errors.rejectValue("oldPw", "notPw");
-			
+			errors.rejectValue("oldPw", "notPw");			
 		}
 	}
 }
