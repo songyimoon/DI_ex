@@ -17,7 +17,7 @@ import repository.MemberRepository;
 public class MemberPwUpdateService {
 	@Autowired
 	MemberRepository memberRepository;
-	@Autowired
+	@Autowired 
 	BCryptPasswordEncoder bcryptPasswordEncoder;
 	
 	public void memPwUpdate(HttpSession session, MemberCommand memberCommand, Errors errors) {
