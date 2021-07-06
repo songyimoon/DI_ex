@@ -8,4 +8,6 @@
 	<bean class="controller.main.MainController"/>
 	<bean id="loginService" class="service.main.LoginService"/>
 	<bean id="loginRepository" class="repository.LoginRepository"/>
+	<bean class="controller.main.LoginController"/>
+	
 </beans>

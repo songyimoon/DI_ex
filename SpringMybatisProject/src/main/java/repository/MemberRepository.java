@@ -19,8 +19,7 @@ public class MemberRepository {
 		statement = namespace + ".memInsert";
 		int i = sqlSession.insert(statement,dto);
 		System.out.println(i+"개 행이 입력되었습니다.");
-	}
-	
+	}	
 	public List<MemberDTO> memList(String memId) {
 		statement = namespace + ".memList";
 		return sqlSession.selectList(statement,memId);
@@ -33,7 +32,21 @@ public class MemberRepository {
 	public void memDel(String memId) {
 		statement = namespace + ".memDel";
 		int i = sqlSession.delete(statement, memId);
-		System.out.println(i+"개 행이 삭제되었습니다.");
-		
+		System.out.println(i+"개 행이 삭제되었습니다.");	
 	}
+	public MemberDTO memMypageInfo(String memId) {
+		statement = namespace + ".memMypageInfo";
+		return sqlSession.selectOne(statement,memId);
+	}
+	public void memMypageInfoModifyOk(MemberDTO dto) {
+		statement = namespace + ".memMypageInfoModifyOk";
+		int i = sqlSession.update(statement,dto);
+		System.out.println(i+"개 행이 수정되었습니다.");
+	}
+	public void memPwUpdate(MemberDTO dto) {
+		statement = namespace + ".memPwUpdate";
+		sqlSession.update(statement,dto);
+	}
+	
+	
 }

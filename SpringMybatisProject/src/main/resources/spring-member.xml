@@ -12,4 +12,14 @@
 	<bean id="memberListService" class="service.member.MemberListService"/>
 	<bean id="memberUpdateService" class="service.member.MemberUpdateService"/>
 	<bean id="memberDeleteService" class="service.member.MemberDeleteService"/>
+	
+	
+	<bean class="controller.member.MemberMyPageController"/>
+	<bean id="memberMyPageInfoService" class="service.member.MemberMyPageInfoService"/>
+	<bean id="memMypageInfoModifyOkService" class="service.member.MemMypageInfoModifyOkService"/>
+	<bean id="memberPwUpdateService" class="service.member.MemberPwUpdateService"/>
+	<bean id="memberPwConfirmService" class="service.member.MemberPwConfirmService"/>
+	<bean id="memberOutService" class="service.member.MemberOutService"/>
+	
+
 </beans>

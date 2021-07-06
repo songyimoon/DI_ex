@@ -1,15 +1,37 @@
 package service.main;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.validation.Errors;
+
+import command.LoginCommand;
 import model.AuthInfoDTO;
 import repository.LoginRepository;
 
 public class LoginService {
 	@Autowired
 	LoginRepository loginRepository;
-	public AuthInfoDTO login(String userId, String userPw) {
+	@Autowired
+	BCryptPasswordEncoder bcryptPasswordEncoder;
+
+	public void login1(LoginCommand loginCommand, Errors errors, HttpSession session) {
+		String userId = loginCommand.getUserId();
 		AuthInfoDTO authInfo = loginRepository.login(userId);
-		return authInfo;
+		if(authInfo == null) {
+			errors.rejectValue("userId", "notId");
+		}else {
+			if(bcryptPasswordEncoder.matches(loginCommand.getUserPw(), authInfo.getUserPw())) {
+				session.setAttribute("authInfo", authInfo);
+				
+			}else {
+				errors.rejectValue("userPw", "notPw");
+			}
+		}
 	}
+	public AuthInfoDTO login(String userId, String userPw) {
+	      AuthInfoDTO authInfo = loginRepository.login(userId); 
+	      return authInfo;
+		}
 }

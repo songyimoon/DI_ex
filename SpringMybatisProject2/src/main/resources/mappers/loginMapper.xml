@@ -5,7 +5,7 @@
 <mapper namespace="mappers/LoginMapper">
 
 <select id="login" parameterType="string" resultType="model.AuthInfoDTO">
-	select MEM_ID uesrId, MEM_PW userPw, MEM_EMAIL userEmail, 1 grage
+	select MEM_ID uesrId, MEM_PW userPw, MEM_EMAIL userEmail, 1 grade
 	from member
 	where MEM_ID=#{userId}
 	UNION

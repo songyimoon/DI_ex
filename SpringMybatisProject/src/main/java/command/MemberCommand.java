@@ -20,7 +20,14 @@ public class MemberCommand {
 	String memAccount;
 	String memEmail;
 	String memEmailCk;
+	String oldPw;
 	
+	public String getOldPw() {
+		return oldPw;
+	}
+	public void setOldPw(String oldPw) {
+		this.oldPw = oldPw;
+	}
 	public boolean isMemPwEqualsMemPwCon() {
 		return memPw.equals(memPwCon);
 	}
