@@ -13,4 +13,13 @@
 	<bean id="employeeInfoService" class="service.employee.EmployeeInfoService"/>         
 	<bean id="employeeUpdateService" class="service.employee.EmployeeUpdateService"/>         
 	<bean id="employeeDeleteService" class="service.employee.EmployeeDeleteService"/>         
+	
+	<bean class="controller.employee.EmployeeMyPageController"/>        
+	<bean id="employeeMyPageInfoService" class="service.employee.EmployeeMyPageInfoService"/>         
+	<bean id="empMyPageInfoModifyOkService" class="service.employee.EmpMyPageInfoModifyOkService"/>         
+	<bean id="employeePwConfirmService" class="service.employee.EmployeePwConfirmService"/>         
+	<bean id="employeePwUpdateService" class="service.employee.EmployeePwUpdateService"/>         
+	
+	
+	
 </beans>

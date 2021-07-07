@@ -12,7 +12,7 @@ public class MemberPasswordValidator implements Validator{
 		return false;
 	}
 
-	public void validate(Object target, Errors errors) {
+	public void validate(Object target, Errors errors) { // 검사할때 커맨드를 새로 만들어서 3개의 필드만 가지는 것을 사용해도 됨.
 		MemberCommand pwCommand = (MemberCommand) target;
 		ValidationUtils.rejectIfEmpty(errors, "oldPw", "required");
 		ValidationUtils.rejectIfEmpty(errors, "memPw", "required");

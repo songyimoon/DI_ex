@@ -38,7 +38,7 @@ public class MemberMyPageController {
 	@RequestMapping("myPage")
 	public String myPage() {
 		return "member/memMyPage";
-	}
+	}	
 	@RequestMapping("memMyPageInfo")
 	public String memMyPageInfo(HttpSession session, Model model) {
 		memberMyPageInfoService.memberMyPageInfo(model, session);
@@ -57,7 +57,6 @@ public class MemberMyPageController {
 		}
 		return "member/memMyPageInfo";		
 	}
-	
 	@RequestMapping("memPwChange")
 	public String memPwChange() { 
 		return "member/memPwChange"; // memPwChange -> 현재 비밀번호를 확인하는 페이지로 이동시킨다.
@@ -81,9 +80,6 @@ public class MemberMyPageController {
 		}
 		return "redirect:/";
 	}
-	
-	
-	
 	
 	@RequestMapping("memOut")
 	public String memOut() {

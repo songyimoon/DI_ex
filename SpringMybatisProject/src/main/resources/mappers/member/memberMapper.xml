@@ -61,6 +61,10 @@
 	where MEM_ID = #{memId}
 </update>
 
-
+<update id="updateCkOk" parameterType="model.MemberDTO">
+	update member
+	set CK_OK = #{ckOk}
+	where MEM_EMAIL = #{memEmail} and CK_OK is null
+</update>
 
 </mapper>

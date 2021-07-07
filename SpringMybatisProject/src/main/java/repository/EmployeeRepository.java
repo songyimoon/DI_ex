@@ -18,15 +18,11 @@ public class EmployeeRepository {
 		int i = sqlSession.delete(statement,empId);
 		System.out.println(i+"개 행이 삭제되었습니다.");
 	}
-	
-	
-	
 	public void empUpdate(EmployeeDTO dto) {
 		statement = namespace + ".empUpdate";
 		int i = sqlSession.update(statement, dto);
 		System.out.println(i+"개 행이 수정되었습니다.");
 	}
-	
 	
 	public EmployeeDTO empInfo(String empId) {
 		statement = namespace + ".empInfo";
@@ -48,7 +44,18 @@ public class EmployeeRepository {
 		statement = namespace + ".empNo";
 		return sqlSession.selectOne(statement);
 	}
-
-
+	public EmployeeDTO empMyPageInfo(String empUserId) {
+		statement = namespace + ".empMyPageInfo";
+		return sqlSession.selectOne(statement,empUserId);
+	}
+	public void empMyPageInfoModify(EmployeeDTO dto) {
+		statement = namespace + ".empMyPageInfoModify";
+		int i = sqlSession.update(statement, dto);
+		System.out.println(i+"개 행이 수정되었습니다.");
+	}
+	public void empPwUpdate(EmployeeDTO dto) {
+		statement = namespace + ".empPwUpdate";
+		sqlSession.update(statement, dto);
+	}
 	
 }

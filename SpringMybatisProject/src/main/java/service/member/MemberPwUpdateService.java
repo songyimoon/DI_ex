@@ -22,11 +22,13 @@ public class MemberPwUpdateService {
 	
 	public void memPwUpdate(HttpSession session, MemberCommand memberCommand, Errors errors) {
 		AuthInfoDTO authInfo = (AuthInfoDTO) session.getAttribute("authInfo");	
+		MemberDTO mem = memberRepository.memMypageInfo(authInfo.getUserId());
 		
-		if(bcryptPasswordEncoder.matches(memberCommand.getOldPw(), authInfo.getUserPw())) {
+		if(bcryptPasswordEncoder.matches(memberCommand.getOldPw(), mem.getMemPw())) {
 			MemberDTO dto = new MemberDTO();
 			dto.setMemId(authInfo.getUserId());
 			dto.setMemPw(bcryptPasswordEncoder.encode(memberCommand.getMemPw()));
+			
 			memberRepository.memPwUpdate(dto);	
 		}else {
 			errors.rejectValue("oldPw", "notPw");			

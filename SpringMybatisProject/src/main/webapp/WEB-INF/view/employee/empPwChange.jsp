@@ -23,8 +23,9 @@ table{
 </style>
 </head>
 <body>
-<form action="memPwChangeOk" name="frm" method="post">
-	비밀번호 : <input type="password" name="memPw" />
+
+<form action="empPwChangeOk" name="frm" method="post">
+	비밀번호 : <input type="password" name="empPw"/>
 	<span>${pwFail }</span><br/>
 	<input type="submit" value="확인"/>
 

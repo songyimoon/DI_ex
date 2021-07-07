@@ -5,11 +5,13 @@
 <mapper namespace="mappers.employeeMapper">
 
 <sql id="baseColumn">
-	EMPLOYEE_ID employeeId, EMP_USERID empUserId, EMP_PW empPw, EMP_NAME empName, HIRE_DATE hireDate, JOB_ID jobId, PH_NUMBER PhNumber, OFFICE_NUMBER officeNumber, EMP_EMAIL empEmail, EMP_ADDRESS empAddress
+	EMPLOYEE_ID employeeId, EMP_USERID empUserId, EMP_PW empPw, EMP_NAME empName, 
+	HIRE_DATE hireDate, JOB_ID jobId, PH_NUMBER PhNumber, 
+	OFFICE_NUMBER officeNumber, EMP_EMAIL empEmail, EMP_ADDRESS empAddress
 </sql>
 
 <delete id="empDelete" parameterType="string">
-	delete from employees where EMPLOYEE_ID=#{empID}
+	delete from employees where EMPLOYEE_ID=#{empId}
 </delete>
 
 
@@ -34,7 +36,7 @@
 		select 
 		<include refid="baseColumn"/>
 		from employees 
-		where EMPLOYEE_ID = #{empID}
+		where EMPLOYEE_ID = #{empId}
 </select>
 
 <update id="empUpdate" parameterType="model.EmployeeDTO">
@@ -42,5 +44,23 @@
 		where EMPLOYEE_ID = #{employeeId}
 </update>
 
+<select id="empMyPageInfo" parameterType="string" resultType="model.EmployeeDTO">
+		select 
+		<include refid="baseColumn"/>
+		from employees 
+		where EMP_USERID = #{empUserId}
+</select>
 
+<update id="empMyPageInfoModify" parameterType="model.EmployeeDTO">
+		update employees set JOB_ID = #{jobId}, PH_NUMBER = #{PhNumber}, OFFICE_NUMBER = #{officeNumber}, EMP_EMAIL = #{empEmail}, EMP_ADDRESS = #{empAddress} 
+		where EMP_USERID = #{empUserId}
+</update>
+
+<update id="empPwUpdate" parameterType="model.EmployeeDTO">
+		update employees 
+		set EMP_PW = #{empPw}
+		where EMP_USERID = #{empUserId}	
+</update>
+
+		
 </mapper>

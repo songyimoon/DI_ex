@@ -15,7 +15,16 @@ public class MemberDTO {
 	String memAccount;
 	String memEmail;
 	String memEmailCk;
+	String ckOk;
 	
+	
+	
+	public String getCkOk() {
+		return ckOk;
+	}
+	public void setCkOk(String ckOk) {
+		this.ckOk = ckOk;
+	}
 	public String getMemId() {
 		return memId;
 	}

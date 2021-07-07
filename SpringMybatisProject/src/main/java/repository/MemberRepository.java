@@ -35,7 +35,6 @@ public class MemberRepository {
 		System.out.println(i+"개 행이 삭제되었습니다.");	
 	}
 	
-	
 	public MemberDTO memMypageInfo(String memId) {
 		statement = namespace + ".memMypageInfo";
 		return sqlSession.selectOne(statement,memId);
@@ -48,6 +47,10 @@ public class MemberRepository {
 	public void memPwUpdate(MemberDTO dto) {
 		statement = namespace + ".memPwUpdate";
 		sqlSession.update(statement,dto);
+	}
+	public int updateCkOk(MemberDTO dto) {
+		statement = namespace + ".updateCkOk";
+		return sqlSession.update(statement, dto);
 	}
 	
 	

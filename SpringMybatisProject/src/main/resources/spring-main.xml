@@ -9,5 +9,5 @@
 	<bean id="loginService" class="service.main.LoginService"/>
 	<bean id="loginRepository" class="repository.LoginRepository"/>
 	<bean class="controller.main.LoginController"/>
-	
+	<bean id="mailService" class="controller.MailService"/>
 </beans>

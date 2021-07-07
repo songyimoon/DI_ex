@@ -20,6 +20,7 @@
 	<bean id="memberPwUpdateService" class="service.member.MemberPwUpdateService"/>
 	<bean id="memberPwConfirmService" class="service.member.MemberPwConfirmService"/>
 	<bean id="memberOutService" class="service.member.MemberOutService"/>
+	<bean id="memberEmailCkService" class="service.member.MemberEmailCkService"/>
 	
 
 </beans>

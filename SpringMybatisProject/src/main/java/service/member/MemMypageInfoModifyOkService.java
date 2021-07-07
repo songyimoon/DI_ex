@@ -4,7 +4,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 
 import command.MemberCommand;
@@ -22,7 +21,6 @@ public class MemMypageInfoModifyOkService {
 		
 		AuthInfoDTO authInfo = (AuthInfoDTO) session.getAttribute("authInfo");
 		String memId = authInfo.getUserId();		
-		memberRepository.memMypageInfo(memId);
 		 
 		if(bcryptPasswordEncoder.matches(memberCommand.getMemPw(), authInfo.getUserPw())) {	
 		MemberDTO dto = new MemberDTO();
@@ -33,7 +31,7 @@ public class MemMypageInfoModifyOkService {
 		dto.setMemPhone(memberCommand.getMemPhone());
 		dto.setPostNumber(memberCommand.getPostNumber());
 		dto.setMemAddress(memberCommand.getMemAddress());
-		dto.setMemId(memberCommand.getMemId());
+		dto.setMemId(memId);
 		memberRepository.memMypageInfoModifyOk(dto);		
 		}else {
 			errors.rejectValue("memPw", "notPw");		
