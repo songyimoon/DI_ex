@@ -19,6 +19,7 @@
 	<bean id="empMyPageInfoModifyOkService" class="service.employee.EmpMyPageInfoModifyOkService"/>         
 	<bean id="employeePwConfirmService" class="service.employee.EmployeePwConfirmService"/>         
 	<bean id="employeePwUpdateService" class="service.employee.EmployeePwUpdateService"/>         
+	<bean id="employeeOutService" class="service.employee.EmployeeOutService"/>         
 	
 	
 	

@@ -77,6 +77,7 @@ table {
 			<a href="empMenu/myPage">마이페이지</a>
 			<a href="member/memList">회원리스트</a>
 			<a href="emp/empList">직원리스트</a>
+			<a href="goods/goodsList">상품리스트</a>
 		</c:if>
 		<a href="login/logOut">로그아웃</a>
 	</c:if>

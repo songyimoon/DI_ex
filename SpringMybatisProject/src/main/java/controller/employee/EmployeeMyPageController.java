@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import command.EmployeeCommand;
 import service.employee.EmpMyPageInfoModifyOkService;
 import service.employee.EmployeeMyPageInfoService;
+import service.employee.EmployeeOutService;
 import service.employee.EmployeePwConfirmService;
 import service.employee.EmployeePwUpdateService;
 import validator.EmployeeCommandValidator;
@@ -31,6 +32,8 @@ public class EmployeeMyPageController {
 	EmployeePwConfirmService employeePwConfirmService;
 	@Autowired
 	EmployeePwUpdateService employeePwUpdateService;
+	@Autowired
+	EmployeeOutService employeeOutService;
 	@RequestMapping("myPage")
 	public String myPage() {
 		return "employee/empMyPage";
@@ -78,8 +81,14 @@ public class EmployeeMyPageController {
 		return "redirect:/";
 	}
 	
-	@RequestMapping("empOut") // 직원 탈퇴하기
+	@RequestMapping("empOut") 
 	public String empOut() {
-		return "employee/";
+		return "employee/empOut";
 	}
+	@RequestMapping("empOutOk")
+	public String empOutOk(@RequestParam(value = "empPw") String empPw, HttpSession session, Model model) {
+		String path = employeeOutService.empDel(empPw, session, model);
+		return path;
+	}
+	
 }

@@ -62,5 +62,9 @@
 		where EMP_USERID = #{empUserId}	
 </update>
 
+<delete id="empOutDel" parameterType="string">
+	delete from employees where EMP_USERID = #{empUserId}
+</delete>
+
 		
 </mapper>

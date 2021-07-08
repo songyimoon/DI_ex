@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,10 +18,10 @@
 </head>
 <body>
 
-<form action="empOutOk.em" method="post" onsubmit="return outConfirm()">
+<form action="empOutOk" method="post" onsubmit="return outConfirm()">
  
 비밀번호 : <input type="password" name="empPw" /><br/>
-<span>${pwFail2 }</span><br/>
+<span>${pwFail }</span><br/>
 <input type="submit" value="탈퇴" />
 </form>
 </body>

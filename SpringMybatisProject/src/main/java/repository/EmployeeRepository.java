@@ -57,5 +57,10 @@ public class EmployeeRepository {
 		statement = namespace + ".empPwUpdate";
 		sqlSession.update(statement, dto);
 	}
+	public void empOutDel(String empUserId) {
+		statement = namespace + ".empOutDel";
+		int i = sqlSession.delete(statement, empUserId);
+		System.out.println(i+"개 행이 삭제되었습니다.");
+	}
 	
 }
