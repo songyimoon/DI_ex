@@ -36,11 +36,11 @@ table{
 	<th>주소</th></tr>
 	<c:forEach items="${lists }" var="dto">
 <tr><td>
-	<a href="memInfo?memId=${dto.memId }">${dto.memId }</a></td>
+	<a href="memInfo/${dto.memId }">${dto.memId }</a></td>
 	<td>${dto.memName }</td>
 	<td>${dto.memPhone }</td>
 	<td>${dto.memEmail }</td>
-	<td>${dto.memAddress } ${dto.detailadd }</td></tr>
+	<td>${dto.memAddress } ${dto.detailAdd }</td></tr>
 	</c:forEach>
 </table>
 </body>

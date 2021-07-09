@@ -1,9 +1,11 @@
 package controller.member;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,6 +14,7 @@ import command.MemberCommand;
 import model.AuthInfoDTO;
 import service.main.LoginService;
 import service.member.MemberJoinService;
+import service.member.MemberListService;
 import validator.MemberCommandValidator;
 
 @Controller
@@ -45,9 +48,6 @@ public class MemberController {
 		}				
 		memberJoinService.memJoin(memberCommand);
 		return "redirect:memList";
-	}
-	@RequestMapping("memList")
-	public String memList() {
-		return "member/memberList";
+
 	}
 }

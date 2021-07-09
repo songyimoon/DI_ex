@@ -9,5 +9,7 @@
 <body>
 <a href="register/agree">회원가입</a>
 <a href="emp/empList">직원리스트</a>
+<a href="member/memList">회원리스트</a>
+
 </body>
 </html>

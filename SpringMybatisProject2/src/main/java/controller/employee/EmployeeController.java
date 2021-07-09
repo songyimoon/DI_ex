@@ -41,7 +41,9 @@ public class EmployeeController {
 	public String empList(Model model) {
 		employeeListService.empList(model);
 		return "employee/employeeList"; // 복사해옴
-	}@RequestMapping(value = "empRegist", method = RequestMethod.GET) // 새로 등록
+	}
+	
+	@RequestMapping(value = "empRegist", method = RequestMethod.GET) // 새로 등록
 	public String empRegist(Model model, EmployeeCommand employeeCommand) {
 		employeeNumService.empNo(model, employeeCommand);
 		return "employee/employeeForm";
@@ -54,8 +56,9 @@ public class EmployeeController {
 		if(errors.hasErrors()) {
 			return "employee/employeeForm";
 		}
+		
 		AuthInfoDTO authInfo = loginService.login(employeeCommand.getEmpUserId(),employeeCommand.getEmpPw()); // jsp페이지를 통해 등록된(command로 받아온) 아이디와 비밀번호를 받음
-		if(authInfo != null) { // 사용중인 아이디가 있다면
+		if(authInfo != null) { // 사용중인 아이디가 있다면 (정보가 없다면 null이 반환될것)
 			errors.rejectValue("empUserId", "duplicate"); // jsp의 name을 따라서
 			return "employee/employeeForm";
 		}employeeJoinService.empInsert(employeeCommand); // 위에서 오류 확인 모두 한 후에, return하기 전에 입력해주는걸로 한다.

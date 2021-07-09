@@ -4,9 +4,22 @@
 <mapper namespace="mappers/memberMappers">
 
 	<insert id="memJoin" parameterType="model.MemberDTO">
-	insert into member
-      (MEM_ID, MEM_PW, MEM_ADDRESS, MEM_NAME, MEM_PHONE, MEM_BIRTH, MEM_GENDER, MEM_ACCOUNT, MEM_EMAIL, MEM_EMAIL_CK, POSTNUMBER, DETAIL_ADD)
-      values
-      (#{memId},#{memPw},#{memAddress},#{memName},#{memPhone},#{memBirth},#{memGender},#{memAccount},#{memEmail},#{memEmailCk},#{postNumber},#{detailAdd})
+		insert into member
+		(MEM_ID, MEM_PW, MEM_ADDRESS, MEM_NAME, MEM_PHONE, MEM_BIRTH, MEM_GENDER, MEM_ACCOUNT, MEM_EMAIL, MEM_EMAIL_CK, POSTNUMBER, DETAIL_ADD)
+     	values
+      	(#{memId},#{memPw},#{memAddress},#{memName},#{memPhone},#{memBirth},#{memGender},#{memAccount},#{memEmail},#{memEmailCk},#{postNumber},#{detailAdd})
 	</insert>
+	
+	
+	<select id="memList" resultType="model.MemberDTO" parameterType="string">	
+		select 
+		MEM_ID memId, MEM_PW memPw, MEM_ADDRESS memAddress, MEM_NAME memName, 
+		MEM_PHONE memPhone, MEM_BIRTH memBirth, MEM_GENDER memGender, 
+		MEM_ACCOUNT memAccount, MEM_EMAIL memEmail, MEM_EMAIL_CK memEmailCk, 
+		POSTNUMBER postNumber, DETAIL_ADD detailAdd    
+		from member
+		<if test="value!=null">where MEM_ID = #{memID} </if>
+	</select>
+	
+	
 </mapper>
