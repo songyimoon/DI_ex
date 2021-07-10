@@ -26,6 +26,7 @@ public class MemberInfoController {
 	@Autowired
 	MemberDeleteService memberDeleteService;
 	
+	
 	@RequestMapping("memList")
 	public String memList(Model model) {
 		memberListService.memList(model,null);
@@ -44,6 +45,8 @@ public class MemberInfoController {
 	@RequestMapping(value = "memModifyOk", method = RequestMethod.POST )
 	public String memUpdate(MemberCommand memberCommand) {
 		memberUpdateService.memUpdate(memberCommand);
+		
+		
 		String encodedParam = "";
 		try {
 			encodedParam = URLEncoder.encode(memberCommand.getMemId(),"utf-8");
@@ -51,7 +54,7 @@ public class MemberInfoController {
 			e.printStackTrace();
 		}
 		return "redirect:memInfo/"+encodedParam;
-	}
+	} // 한글 아이디가 넘어가지 않아서 encoding 다시 해주었음
 	
 	
 	@RequestMapping("memDel")

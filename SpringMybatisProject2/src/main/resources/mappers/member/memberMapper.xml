@@ -21,5 +21,17 @@
 		<if test="value!=null">where MEM_ID = #{memID} </if>
 	</select>
 	
+	<update id="memUpdate" parameterType="model.MemberDTO">
+		update member
+		set 
+		POSTNUMBER=#{postNumber}, MEM_ADDRESS=#{memAddress}, DETAIL_ADD=#{detailAdd}, MEM_PHONE=#{memPhone}, 
+		MEM_EMAIL=#{memEmail}, MEM_ACCOUNT=#{memAccount}, MEM_EMAIL_CK=#{memEmailCk}
+		where MEM_ID = #{memId}
+	</update>
+	
+	<delete id = "memDel" parameterType="string">
+		delete from member
+		where MEM_ID = #{memId}
+	</delete>
 	
 </mapper>

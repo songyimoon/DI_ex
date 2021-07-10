@@ -23,4 +23,14 @@ public class MemberRepository {
 		statement = namespace + ".memList";
 		return sqlSession.selectList(statement,memId);
 	}
+	public void memUpdate(MemberDTO dto) {
+		statement = namespace + ".memUpdate";
+		int i = sqlSession.update(statement,dto);
+		System.out.println(i+"개 행이 수정되었습니다.");
+	}
+	public void memDel(String memId) {
+		statement = namespace + ".memDel";
+		int i = sqlSession.delete(statement,memId);
+		System.out.println(i+"개 행이 삭제되었습니다.");
+	}
 }

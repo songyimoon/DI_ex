@@ -82,7 +82,7 @@ table{
 </head>
 <body>
 
-<form action="memModifyOk" method="post" name="frm">
+<form action="../memModifyOk" method="post" name="frm">
 <input type="hidden" name="memId" value="${lists[0].memId }"/> 
 <table align="center">
 <tr>
@@ -155,7 +155,7 @@ table{
 	<input type="submit" value="수정"/>
 	<input type="button" value="수정 취소" onclick="javascript:history.back();"/>
 	
-	<input type="button" value="회원 탈퇴" onclick="javascript:location.href='memDel?memId=${dto.memId }'"/>
+	<input type="button" value="회원 탈퇴" onclick="javascript:location.href='../memDel?memId=${lists[0].memId }'"/>
 	
 	
 	</td>
