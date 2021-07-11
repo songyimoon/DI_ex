@@ -65,7 +65,7 @@ table {
 	
 	<c:if test="${authInfo.grade == 1}">
 		<!-- 일반사용자 -->
-		<a href="#">마이페이지</a>
+		<a href="MemMyPage/myPage">마이페이지</a>
 	</c:if> 
 	
 	<c:if test="${authInfo.grade != 1}">

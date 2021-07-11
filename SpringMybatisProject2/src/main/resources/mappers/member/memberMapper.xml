@@ -34,4 +34,14 @@
 		where MEM_ID = #{memId}
 	</delete>
 	
+	<select id="memMyPageInfo" parameterType="string" resultType="model.MemberDTO">
+		select MEM_ID memId, MEM_PW memPw, MEM_ADDRESS memAddress, MEM_NAME memName, 
+		MEM_PHONE memPhone, MEM_BIRTH memBirth, MEM_GENDER memGender, 
+		MEM_ACCOUNT memAccount, MEM_EMAIL memEmail, MEM_EMAIL_CK memEmailCk, 
+		POSTNUMBER postNumber, DETAIL_ADD detailAdd    
+		from member
+		where MEM_ID = #{memId}	
+	</select>
+	
+	
 </mapper>

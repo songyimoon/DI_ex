@@ -9,13 +9,16 @@
 	<bean class="controller.member.MemberController"/>
 	<bean id="memberrepository" class="repository.MemberRepository"/>
 	
-	<bean class="controller.member.MemberInfoController"/>
-	
+	<bean class="controller.member.MemberInfoController"/>	
 	<bean id="memberJoinService" class="service.member.MemberJoinService"/>
 	<bean id="memberListService" class="service.member.MemberListService"/>
 	<bean id="memberUpdateService" class="service.member.MemberUpdateService"/>
 	<bean id="memberDelService" class="service.member.MemberDelService"/>
 
+	<bean class="controller.member.MemberMyPageController"/>
+	<bean id="memberMyPageInfoService" class="service.member.MemberMyPageInfoService"/>
+	<bean id="memberMyPageInfoModifyService" class="service.member.MemberMyPageInfoModifyService"/>
+	
 	
 	
 </beans>
