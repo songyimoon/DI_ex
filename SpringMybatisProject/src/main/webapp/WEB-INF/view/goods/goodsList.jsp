@@ -34,8 +34,17 @@ table{
 	<th>배송비</th></tr>
 	
 	<c:forEach items="${lists }" var="dto">
-	<tr><td align="center"><a href="prodDetail?prodNum=${dto.prodNum }">${dto.prodNum }</a></td>
-		<td align="center">${dto.ctgr }</td>
+	<tr><td align="center"><a href="goodsDetail?prodNum=${dto.prodNum }">${dto.prodNum }</a></td>
+		<td align="center">
+		
+			<c:if test="${dto.ctgr == 'wear'}">의류</c:if>
+			<c:if test="${dto.ctgr == 'cosmetic'}">화장품</c:if>
+			<c:if test="${dto.ctgr == 'food'}">식품</c:if>
+			<c:if test="${dto.ctgr == 'car'}">자동차용품</c:if>
+		
+		</td>
+		
+		
 		<td align="center">${dto.prodName }</td>
 		<td align="center"><fmt:formatNumber value="${dto.prodPrice }" type="currency"/></td>
 		<td align="center"><fmt:formatNumber value="${dto.prodDelFee }" type="currency"/></td></tr>

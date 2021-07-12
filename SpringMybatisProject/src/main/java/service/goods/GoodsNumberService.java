@@ -9,8 +9,8 @@ import repository.GoodsRepository;
 public class GoodsNumberService {
 	@Autowired
 	GoodsRepository goodsRepository;
-	public void goodsNum(Model model) { // DB부터 값 가져올 때 모델 필요
-		String goodsNum=goodsRepository.goodsNum();
-		model.addAttribute("goodsNum",goodsNum);
+	public void prodNum(Model model) { // DB부터 값 가져올 때 모델 필요
+		String prodNum=goodsRepository.prodNum();
+		model.addAttribute("prodNum",prodNum);
 	}
 }

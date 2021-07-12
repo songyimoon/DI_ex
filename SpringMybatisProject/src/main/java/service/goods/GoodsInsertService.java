@@ -24,7 +24,7 @@ public class GoodsInsertService {
 		dto.setProdDelFee(goodsCommand.getProdDelFee());
 		dto.setProdDetail(goodsCommand.getProdDetail());
 		dto.setProdName(goodsCommand.getProdName());
-		dto.setProdNum(goodsCommand.getGoodsNum());
+		dto.setProdNum(goodsCommand.getProdNum());
 		dto.setProdPrice(goodsCommand.getProdPrice());
 		dto.setProdSupplier(goodsCommand.getProdSupplier());
 		dto.setRecommend(goodsCommand.getRecommend());

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mappers.noticeMapper">
+
+<select id="noticeNum" resultType="string">
+	select NOTICE_SEQ.nextval from dual
+</select>
+
+<select id="noticeList" resultType="nd">
+	select NOTICE_NO noticeNo, NOTICE_SUB noticeSub, NOTICE_CON noticeCon, NOTICE_DATE noticeDate,
+	NOTICE_KIND noticeKind, NOTICE_FILE noticeFile, NOTICE_HITS noticeHits, EMPLOYEE_ID employeeId
+	from notice
+</select>
+
+<select id="noticeDetail" parameterType="string" resultType="nd">
+	select NOTICE_NO noticeNo, NOTICE_SUB noticeSub, NOTICE_CON noticeCon, NOTICE_DATE noticeDate,
+	NOTICE_KIND noticeKind, NOTICE_FILE noticeFile, NOTICE_HITS noticeHits, EMPLOYEE_ID employeeId
+	from notice
+	where NOTICE_NO = #{noticeNo}
+</select>
+
+</mapper>

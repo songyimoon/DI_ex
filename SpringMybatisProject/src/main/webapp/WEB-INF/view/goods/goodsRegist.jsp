@@ -33,7 +33,7 @@ table{
 				<option value="food">식품</option>
 				<option value="car">자동차용품</option>			
 			</select>
-			<input type="text" name="goodsNum" value="${goodsNum }"/></td></tr>
+			<input type="text" name="prodNum" value="${prodNum }"/></td></tr>
 	<tr><th>상품명</th>
 		<td><input type="text" name="prodName"/></td></tr>
 	<tr><th>가격</th>

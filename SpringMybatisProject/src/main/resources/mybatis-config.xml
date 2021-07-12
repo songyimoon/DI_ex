@@ -4,5 +4,6 @@
 <configuration> 
 	<typeAliases>
 		<typeAlias type="model.GoodsDTO" alias="gd"/>
+		<typeAlias type="model.NoticeDTO" alias="nd"/>
 	</typeAliases>
 </configuration>

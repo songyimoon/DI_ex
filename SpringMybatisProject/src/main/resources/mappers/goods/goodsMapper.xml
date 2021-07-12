@@ -3,7 +3,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.goodsMapper">
 
-<select id="goodsNum" resultType="string">
+<select id="prodNum" resultType="string">
 	select PROD_SEQ.nextval from dual
 </select>
 	
@@ -20,5 +20,40 @@
 	PROD_CAPACITY prodCapacity, PROD_SUPPLIER prodSupplier, PROD_DEL_FEE prodDelFee, RECOMMEND recommend, EMPLOYEE_ID employeeId, CTGR ctgr
 	from products
 </select>
+
+
+<!-- id는 primary key -->
+<!-- result는 일반 컬럼 -->
+
+<resultMap type="model.GoodsDTO" id="baseResult">
+	<id column="PROD_NUM" jdbcType="BIGINT" property="prodNum"/>
+	<result column="PROD_NAME" jdbcType="VARCHAR" property="prodName"/>
+	<result column="PROD_PRICE" jdbcType="BIGINT" property="prodPrice"/>
+	<result column="PROD_IMAGE" jdbcType="VARCHAR" property="prodImage"/>
+	<result column="PROD_DETAIL" jdbcType="VARCHAR" property="prodDetail"/>
+	<result column="PROD_CAPACITY" jdbcType="VARCHAR" property="prodCapacity"/>
+	<result column="PROD_SUPPLIER" jdbcType="VARCHAR" property="prodSupplier"/>
+	<result column="PROD_DEL_FEE" jdbcType="BIGINT" property="prodDelFee"/>
+	<result column="RECOMMEND" jdbcType="VARCHAR" property="recommend"/>	
+	<result column="EMPLOYEE_ID" jdbcType="VARCHAR" property="employeeId"/>	
+	<result column="CTGR" jdbcType="VARCHAR" property="ctgr"/>
+</resultMap>
+
+
+<select id="goodsDetail" parameterType="string" resultMap="baseResult">
+	select
+	PROD_NUM, PROD_NAME, PROD_PRICE, PROD_IMAGE, PROD_DETAIL,
+	PROD_CAPACITY, PROD_SUPPLIER, 
+	PROD_DEL_FEE, RECOMMEND, EMPLOYEE_ID, CTGR 
+	from products
+	where PROD_NUM=#{prodNum}
+</select>
+
+<update id="goodsUpdate" parameterType="gd">
+	update products 
+	set PROD_PRICE=#{prodPrice}, PROD_DETAIL =#{prodDetail}, PROD_CAPACITY=#{prodCapacity}, 
+	PROD_SUPPLIER=#{prodSupplier}, PROD_DEL_FEE=#{prodDelFee}, RECOMMEND=#{recommend}, CTGR=#{ctgr}
+	where PROD_NUM=#{prodNum}
+</update>
 
 </mapper>
