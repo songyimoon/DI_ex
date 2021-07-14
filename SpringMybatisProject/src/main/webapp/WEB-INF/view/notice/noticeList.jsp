@@ -38,7 +38,7 @@ table{
 	<th>조회수</th>
 	<th>글쓴이(사원)</th>
 <c:forEach items="${lists }" var="dto">
-<tr><td align="center"><a href="noticeDetail?noticeNo=${dto.noticeNo }">${dto.noticeNo }</a></td>
+<tr><td align="center"><a href="noticeModify?noticeNo=${dto.noticeNo }">${dto.noticeNo }</a></td>
 	<td align="center">	
 		<c:if test="${dto.noticeKind == 'not'}">일반공지</c:if>
 		<c:if test="${dto.noticeKind == 'deliv'}">배송</c:if>

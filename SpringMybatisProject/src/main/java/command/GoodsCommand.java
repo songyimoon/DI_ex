@@ -13,7 +13,8 @@ public class GoodsCommand {
 	Long prodDelFee;
 	String recommend;
 	String prodDetail;
-	MultipartFile [] prodImage1; // 파일이 여러개 날아감. 이름이 다 동일하므로 배열로 받아주자.
+	MultipartFile [] prodImage; // 파일이 여러개 날아감. 이름이 다 동일하므로 배열로 받아주자.
+	String fileDel1;
 	
 	public String getCtgr() {
 		return ctgr;
@@ -21,7 +22,6 @@ public class GoodsCommand {
 	public void setCtgr(String ctgr) {
 		this.ctgr = ctgr;
 	}
-
 	public Long getProdNum() {
 		return prodNum;
 	}
@@ -70,12 +70,19 @@ public class GoodsCommand {
 	public void setProdDetail(String prodDetail) {
 		this.prodDetail = prodDetail;
 	}
-	public MultipartFile[] getProdImage1() {
-		return prodImage1;
+	public MultipartFile[] getProdImage() {
+		return prodImage;
 	}
-	public void setProdImage1(MultipartFile[] prodImage1) {
-		this.prodImage1 = prodImage1;
+	public void setProdImage(MultipartFile[] prodImage) {
+		this.prodImage = prodImage;
 	}
+	public String getFileDel1() {
+		return fileDel1;
+	}
+	public void setFileDel1(String fileDel1) {
+		this.fileDel1 = fileDel1;
+	}
+
 
 	
 }

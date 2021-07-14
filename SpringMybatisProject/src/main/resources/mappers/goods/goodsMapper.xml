@@ -10,7 +10,10 @@
 <insert id="goodsInsert" parameterType="gd">
 	insert into products (PROD_NUM, PROD_NAME, PROD_PRICE, PROD_IMAGE, PROD_DETAIL,
 	 PROD_CAPACITY, PROD_SUPPLIER, PROD_DEL_FEE, RECOMMEND, EMPLOYEE_ID, CTGR)
-	values (#{prodNum},#{prodName},#{prodPrice},#{prodImage},#{prodDetail},
+	values (#{prodNum},#{prodName},#{prodPrice},
+	<if test="prodImage!=null">#{prodImage}</if>
+	<if test="prodImage==null">null</if>
+	,#{prodDetail},
 	#{prodCapacity},#{prodSupplier},#{prodDelFee},#{recommend},#{employeeId},#{ctgr})
 </insert>
 
@@ -52,8 +55,58 @@
 <update id="goodsUpdate" parameterType="gd">
 	update products 
 	set PROD_PRICE=#{prodPrice}, PROD_DETAIL =#{prodDetail}, PROD_CAPACITY=#{prodCapacity}, 
-	PROD_SUPPLIER=#{prodSupplier}, PROD_DEL_FEE=#{prodDelFee}, RECOMMEND=#{recommend}, CTGR=#{ctgr}
+	PROD_SUPPLIER=#{prodSupplier}, PROD_DEL_FEE=#{prodDelFee}, RECOMMEND=#{recommend}, CTGR=#{ctgr}, PROD_IMAGE = #{prodImage}
 	where PROD_NUM=#{prodNum}
 </update>
+
+<delete id="goodsDel" parameterType="string">
+	delete from products
+	where PROD_NUM=#{prodNum}
+</delete>
+
+<insert id="cartAdd" parameterType="model.CartDTO">
+	merge into cart c1
+	using (select PROD_NUM from products where PROD_NUM = #{prodNum} ) p1
+	on (c1.PROD_NUM = p1.PROD_NUM and c1.MEM_ID = #{memId})
+	When MATCHED THEN 
+		update set c1.cart_qty = cart_qty + #{cartQty},
+			   c1.cart_price = cart_price + #{cartPrice}	
+	When not MATCHED THEN
+		insert (c1.MEM_ID, c1.PROD_NUM, c1.cart_qty, c1.cart_price)
+		values (#{memId},#{prodNum},#{cartQty},#{cartPrice})	
+</insert>
+
+<select id="memProdNum" parameterType="string" resultType="string">
+	select prod_num from cart
+	where MEM_ID = #{memId}
+</select>
+
+<resultMap type="model.ProductCartDTO" id="productCartMap">
+ 
+	<association property="productDTO" javaType="model.GoodsDTO">
+		<result column="PROD_SUPPLIER" jdbcType="VARCHAR" property="prodSupplier"/>
+		<result column="PROD_DEL_FEE" jdbcType="BIGINT" property="prodDelFee"/>
+		<result column="PROD_IMAGE" jdbcType="VARCHAR" property="prodImage"/>
+		<result column="PROD_NAME" jdbcType="VARCHAR" property="prodName"/>
+		<result column="PROD_PRICE" jdbcType="BIGINT" property="prodPrice"/>
+	</association>
+	
+	<association property="cartDTO" javaType="model.CartDTO">
+		<id column="PROD_NUM" jdbcType="BIGINT" property="prodNum"/>
+		<id column="MEM_ID" jdbcType="VARCHAR" property="memId"/>
+		<result column="CART_PRICE" jdbcType="BIGINT" property="cartPrice"/>
+		<result column="CART_QTY" jdbcType="BIGINT" property="cartQty"/>		
+	</association>
+</resultMap>
+
+
+<select id="cartList" parameterType="model.CartDTO" resultMap="productCartMap">
+	select p.PROD_NUM, PROD_SUPPLIER, PROD_DEL_FEE, PROD_IMAGE, PROD_NAME, PROD_PRICE,
+			 CART_PRICE, CART_QTY, MEM_ID
+	from products p, cart c
+	where p.PROD_NUM = c.PROD_NUM and c.MEM_ID = #{memId}
+	and p.PROD_NUM = #{prodNum}
+</select>
+
 
 </mapper>

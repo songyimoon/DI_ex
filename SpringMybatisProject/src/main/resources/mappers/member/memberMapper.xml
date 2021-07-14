@@ -25,6 +25,8 @@
 	<if test="value != null">where MEM_ID = #{memId}</if> 
 </select>
 
+
+
 <update id="memUpdate" parameterType="model.MemberDTO">
 	update member 
 	set 

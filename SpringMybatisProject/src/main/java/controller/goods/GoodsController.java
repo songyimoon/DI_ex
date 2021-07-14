@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import command.GoodsCommand;
 import service.goods.GoodsNumberService;
 import service.goods.GoodsUpdateService;
+import service.goods.GoodsDeleteService;
 import service.goods.GoodsDetailService;
 import service.goods.GoodsInsertService;
 import service.goods.GoodsListService;
@@ -33,6 +34,8 @@ public class GoodsController {
 	GoodsDetailService goodsDetailService;
 	@Autowired
 	GoodsUpdateService goodsUpdateService;
+	@Autowired
+	GoodsDeleteService goodsDeleteService;
 	
 	@RequestMapping("goodsList")
 	public String goodsList(Model model) {
@@ -66,13 +69,18 @@ public class GoodsController {
 		return "goods/goodsModify";
 	}
 	@RequestMapping("goodsUpdate")
-	public String goodsUpdate(GoodsCommand goodsCommand, Errors errors) {
+	public String goodsUpdate(GoodsCommand goodsCommand, Errors errors, HttpSession session) {
 		new GoodsCommandValidator().validate(goodsCommand, errors);
 		if(errors.hasErrors()) {			
 			return "goods/goodsModify";
 		}
-		goodsUpdateService.goodsUpdate(goodsCommand);
+		goodsUpdateService.goodsUpdate(goodsCommand, session);
 		return "redirect:/goods/goodsList";
+	}
+	@RequestMapping("goodsDel")
+	public String goodsDel(@RequestParam(value = "prodNum") String prodNum, HttpSession session) {
+		goodsDeleteService.goodsDel(prodNum, session);
+		return "redirect:goodsList";
 	}
 }
 

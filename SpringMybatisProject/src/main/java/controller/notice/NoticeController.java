@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import command.NoticeCommand;
 import service.notice.NoticeDetailService;
 import service.notice.NoticeEmpIdService;
 import service.notice.NoticeListService;
@@ -42,5 +43,8 @@ public class NoticeController {
 		noticeDetailService.noticeDetail(noticeNo,model);
 		return "notice/noticeDetail";
 	}
-	
+	@RequestMapping("noticeModify")
+	public String noticeModify(@RequestParam(value = "noticeNo") String noticeNo, NoticeCommand noticeCommand) {
+		return "notice/noticeModify";
+	}
 }

@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
-    
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>  
 <!DOCTYPE html>
 <html>
@@ -51,7 +50,7 @@ table{
 	<tr><th>내용</th>
 		<td><textarea rows="6" cols="50" name="prodDetail"></textarea></td></tr>	
 	<tr><th>파일</th>
-		<td><input type="file" name="prodImage1" multiple="multiple"/><br/>
+		<td><input type="file" name="prodImage" multiple="multiple"/><br/>
 </td></tr>
 	<tr><th colspan="2">
 			<input type="submit" value="상품 등록"/>
