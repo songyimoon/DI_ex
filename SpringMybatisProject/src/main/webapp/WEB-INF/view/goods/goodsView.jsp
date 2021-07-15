@@ -56,7 +56,7 @@ table{
 </head>
 <body>
 
-<table>
+<table align="center">
 	<tr><td rowspan="5"> <br/>
 	<img src="../goods/upload/${goodsCommand.prodImage.split(',')[0]}" width="300px"/></td>
 								<th>${goodsCommand.prodName}</th></tr>

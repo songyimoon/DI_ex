@@ -5,6 +5,7 @@ public class CartDTO {
 	String prodNum;
 	int cartQty;
 	int cartPrice;
+	String purchaseNum;
 	
 	public String getMemId() {
 		return memId;
@@ -30,4 +31,11 @@ public class CartDTO {
 	public void setCartPrice(int cartPrice) {
 		this.cartPrice = cartPrice;
 	}
+	public String getPurchaseNum() {
+		return purchaseNum;
+	}
+	public void setPurchaseNum(String purchaseNum) {
+		this.purchaseNum = purchaseNum;
+	}
+
 }

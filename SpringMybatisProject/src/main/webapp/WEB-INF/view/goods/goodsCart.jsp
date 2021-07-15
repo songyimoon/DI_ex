@@ -28,12 +28,14 @@ table{
 <script>
 	function checkQty(prodNum, prodPrice, cartQty){
 		if(cartQty > 1){
-			location.href="goodsCartQtyDown.gd?prodNum="+prodNum+"&prodPrice="+prodPrice;
+			location.href="goodsCartQtyDown?prodNum="+prodNum+"&prodPrice="+prodPrice;
 		}else{
 			alert("최소 수량이 1이어야 합니다.")
 			return false;
 		}
 	}
+	
+	
 	function prodChk(){
 		var prodTot = 0;
 		var chk = document.getElementsByName("prodCk"); // check를 배열로
@@ -45,16 +47,40 @@ table{
 				cnt ++;
 			}
 		}
+		if(cnt <= 0){
+			alert("구매하시려면 상품을 하나 이상 선택하셔야 합니다.");
+			return false;
+		}
 		document.getElementById("totalPrice").innerHTML=prodTot;
 		document.getElementById("prodCnt").innerHTML=cnt;
 	}
+	
+	
+	function goodsCheck(){
+		var chk = document.getElementsByName("prodCk");
+		var cnt = 0;
+		for(var i = 0; i < chk.length; i++){
+			if(chk[i].checked){
+				cnt++;
+			}
+		}
+		if(cnt <= 0){
+			alert("구매하시려면 적어도 하나 이상의 상품을 선택하셔야 합니다.");
+			return false;
+		}
+	}
+	
 </script>
 </head>
 <body>
 <h1 align="center">장바구니 페이지</h1>
 
 <table align="center">
-<form action="goodsBuy" method="post">
+<form action="goodsBuy" method="post" onsubmit="return goodsCheck()">
+
+	<tr><td colspan="8"><button>선택항목 삭제</button></td></tr>
+
+
 <c:set var="price" value="0"/>
 <c:set var="cnt" value="0"/>
 	<!-- c:set을 이용해서 price라는 자바변수생성. 변수 선언이기 때문에  for문 밖에 위치 -->
@@ -62,23 +88,23 @@ table{
 
 
 	<tr><th colspan="4" bgcolor=#e0e0eb>
-		<input type="checkbox" value="${dto.productDTO.prodNum}" name="prodCk" onchange="prodChk();" checked/>
+		<input type="checkbox" value="${dto.cartDTO.prodNum}" name="prodCk" onchange="prodChk();" checked/>
 			<!-- 체크박스가 prodNum을 가지고 있어서, prodChk 실행 시 상품 번호를 더해버리는 현상이 나타난다. 그래서 아래 hidden만듦 -->
 			<input type="hidden" name="cartPrice" value="${dto.cartDTO.cartPrice + dto.productDTO.prodDelFee}" />
 			${dto.productDTO.prodSupplier }</th>
 		<th bgcolor=#e0e0eb>적용금액</th>
 		<th bgcolor=#e0e0eb>배송비</th>
 		<th bgcolor=#e0e0eb>총 적용금액</th>
-		<td rowspan="2"><input type="button" value="삭제" onclick="javascript:location.href='cartProdDel.gd?prodNum=${dto.productDTO.prodNum}';"/></td>
+		<td rowspan="2"><input type="button" value="삭제" onclick="javascript:location.href='cartProdDel?prodNum=${dto.cartDTO.prodNum}';"/></td>
 	</tr>
 	
 		
 	<tr><td><img src="../goods/upload/${dto.productDTO.prodImage.split(',')[0]}" width="100" height="100" ></td>
 		<td align="center">${dto.productDTO.prodName }</td>
 		<!-- html document상에서의 값을 확인하기 위해서 자바스크립트를 사용한다. -->
-		<td align="center"><a href="javascript:checkQty('${dto.productDTO.prodNum}','${dto.productDTO.prodPrice }','${dto.cartDTO.cartQty }')">-</a> &nbsp;&nbsp; 
+		<td align="center"><a href="javascript:checkQty('${dto.cartDTO.prodNum}','${dto.productDTO.prodPrice }','${dto.cartDTO.cartQty }')">-</a> &nbsp;&nbsp; 
 			${dto.cartDTO.cartQty }&nbsp;&nbsp;  
-			<a href="goodsCartAdd.gd?prodNum=${dto.productDTO.prodNum }&qty=1&&prodPrice=${dto.productDTO.prodPrice}">+</a>
+			<a href="goodsCartAdd?prodNum=${dto.cartDTO.prodNum}&cartQty=1&&prodPrice=${dto.productDTO.prodPrice}">+</a>
 		</td>
 		<td align="right"><fmt:formatNumber value="${dto.productDTO.prodPrice }" type="number"/>원
 		</td>

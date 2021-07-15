@@ -13,25 +13,21 @@ import model.CartDTO;
 import model.ProductCartDTO;
 import repository.GoodsRepository;
 
-public class GoodsCartListService {
+public class GoodsBuyService {
 	@Autowired
 	GoodsRepository goodsRepository;
-	public void cartList(HttpSession session, Model model) {
+	public void goodBuy(String [] prodNums, HttpSession session, Model model) {
 		AuthInfoDTO authInfo = (AuthInfoDTO)session.getAttribute("authInfo");
 		String memId = authInfo.getUserId();
-		// DTO에 있는 멤버가 1대 1 관계인 경우 mybatis에서는 리스트로 받아오지 못한다.
-		
-		// ↓ 사용자의 장바구니에 있는 상품번호를 가져옴 (cartList의 prodNum을 주기 위해서 가져온 값)
-		List <String> prodNums = goodsRepository.memProdNum(memId);
-		
 		List <ProductCartDTO> list = new ArrayList<ProductCartDTO>();
 		for(String prodNum : prodNums) {
 			CartDTO dto = new CartDTO();
 			dto.setMemId(memId);
 			dto.setProdNum(prodNum);
+			// 카트리스트에서 사용한 정보가 구매페이지에서도 똑같이 사용되므로, 해당 코드를 그대로 적용한다.
 			ProductCartDTO productCartDTO = goodsRepository.cartList(dto);
 			list.add(productCartDTO);
 		}
-		model.addAttribute("lists",list);
+		model.addAttribute("lists", list);
 	}
 }
