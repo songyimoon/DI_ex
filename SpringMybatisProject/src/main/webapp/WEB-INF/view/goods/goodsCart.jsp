@@ -47,10 +47,6 @@ table{
 				cnt ++;
 			}
 		}
-		if(cnt <= 0){
-			alert("구매하시려면 상품을 하나 이상 선택하셔야 합니다.");
-			return false;
-		}
 		document.getElementById("totalPrice").innerHTML=prodTot;
 		document.getElementById("prodCnt").innerHTML=cnt;
 	}
@@ -77,9 +73,7 @@ table{
 
 <table align="center">
 <form action="goodsBuy" method="post" onsubmit="return goodsCheck()">
-
-	<tr><td colspan="8"><button>선택항목 삭제</button></td></tr>
-
+ 
 
 <c:set var="price" value="0"/>
 <c:set var="cnt" value="0"/>
@@ -104,7 +98,7 @@ table{
 		<!-- html document상에서의 값을 확인하기 위해서 자바스크립트를 사용한다. -->
 		<td align="center"><a href="javascript:checkQty('${dto.cartDTO.prodNum}','${dto.productDTO.prodPrice }','${dto.cartDTO.cartQty }')">-</a> &nbsp;&nbsp; 
 			${dto.cartDTO.cartQty }&nbsp;&nbsp;  
-			<a href="goodsCartAdd?prodNum=${dto.cartDTO.prodNum}&cartQty=1&&prodPrice=${dto.productDTO.prodPrice}">+</a>
+			<a href="goodsCartAdd?prodNum=${dto.cartDTO.prodNum}&cartQty=1&prodPrice=${dto.productDTO.prodPrice}">+</a>
 		</td>
 		<td align="right"><fmt:formatNumber value="${dto.productDTO.prodPrice }" type="number"/>원
 		</td>

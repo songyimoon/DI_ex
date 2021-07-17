@@ -3,15 +3,14 @@ package service.goods;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 
-import model.GoodsDTO;
 import model.GoodsReviewsDTO;
 import repository.GoodsRepository;
 
-public class GoodsDetailService {
+public class GoodsReviewService {
 	@Autowired
 	GoodsRepository goodsRepository;
-	public void goodsDetail(String prodNum, Model model) {
-		GoodsDTO dto = goodsRepository.goodsDetail(prodNum); 
-		model.addAttribute("goodsCommand",dto);
+	public void goodsReviews(String prodNum, Model model) {
+		GoodsReviewsDTO dto = goodsRepository.goodsReviews(prodNum);
+		model.addAttribute("goodsReviews", dto);
 	}
 }

@@ -2,7 +2,6 @@ package command;
 
 public class GoodsOrderCommand {
 	
-	
 	String receiverName;
 	String purchaseAddr;
 	String receiverPhone;

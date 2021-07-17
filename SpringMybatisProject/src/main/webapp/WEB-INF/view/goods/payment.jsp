@@ -22,23 +22,23 @@ table{
 </head>
 <body>
 
-<h1>결제 페이지</h1>
+<h1 align="center">결제 페이지</h1>
 <hr />
  
 <form action="doPayment" method="post">
 <input type="hidden" name="purchaseNum" value="${purchNo }" />
 <input type="hidden" name="paymentApprPrice" value="${payPrice }" />
 
-<table>
-	<tr><td>구매번호: </td><td>${purchNo }</td></tr>
-	<tr><td>결제금액: </td><td>${payPrice }</td></tr>
-	<tr><td>결제방법: </td><td>카드</td></tr>
-	<tr><td>카드번호: </td><td><input type="text" name="paymentNumber"></td></tr>
-	<tr><td align="center" colspan="2">
+<table align="center">
+	<tr align="center"><th>구매번호: </th><td>${purchNo }</td></tr>
+	<tr align="center"><th>결제금액: </th><td>${payPrice }</td></tr>
+	<tr align="center"><th>결제방법: </th><td>카드</td></tr>
+	<tr align="center"><th>카드번호: </th><td><input type="text" name="paymentNumber"></td></tr>
+	<tr align="center"><th align="center" colspan="2">
 		<input type="submit" value="결제완료"/>
 		<input type="button" value="뒤로 가기" onclick="javascript:history.back();"/>
 		
-		</td><td></td></tr>
+		</th><td></td></tr>
 
 </table>
 </form>

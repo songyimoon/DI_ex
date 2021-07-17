@@ -7,8 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import model.CartDTO;
 import model.GoodsDTO;
+import model.GoodsReviewsDTO;
+import model.OrderListDTO;
+import model.PaymentDTO;
 import model.ProductCartDTO;
 import model.PurchaseDTO;
+import model.ReviewDTO;
 
 public class GoodsRepository {
 	@Autowired
@@ -72,6 +76,33 @@ public class GoodsRepository {
 	public void cartDelete(CartDTO d) {
 		statement = namepspace + ".cartDelete";
 		sqlSession.delete(statement, d);
+	}
+	public List<OrderListDTO> baseOrderList(String memId){
+		statement = namepspace + ".baseOrderList";
+		return sqlSession.selectList(statement, memId);
+	}
+	public void doPayment(PaymentDTO dto) {
+		statement = namepspace + ".doPayment";
+		int i = sqlSession.insert(statement, dto);
+		System.out.println(i+"개 행이 입력되었습니다.");
+	}
+	public void reviewWrite(ReviewDTO dto) {
+		statement = namepspace + ".reviewWrite";
+		int i = sqlSession.insert(statement, dto);
+		System.out.println(i+"개 행이 입력되었습니다.");
+	}
+	public ReviewDTO reviewInfo(ReviewDTO dto) {
+		statement = namepspace + ".reviewInfo";
+		return sqlSession.selectOne(statement, dto);
+	}
+	public void reviewUpdate(ReviewDTO dto) {
+		statement = namepspace + ".reviewUpdate";
+		int i = sqlSession.update(statement, dto);
+		System.out.println(i+"개 행이 수정되었습니다.(리뷰)");
+	}
+	public GoodsReviewsDTO goodsReviews(String prodNum) {
+		statement = namepspace + ".goodsReviews";
+		return sqlSession.selectOne(statement, prodNum);
 	}
 }
 

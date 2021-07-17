@@ -83,6 +83,7 @@
 </select>
 
 <!-- association은 한꺼번에 여러개 값 가져오지 못한다. 하나하나 받아와서 저장하기 -->
+<!-- 두 테이블에 있는 값을 1:1로 가져올 때 -->
 <resultMap type="model.ProductCartDTO" id="productCartMap">
 	<association property="productDTO" javaType="model.GoodsDTO">
 		<result column="PROD_SUPPLIER" jdbcType="VARCHAR" property="prodSupplier"/>
@@ -105,8 +106,7 @@
 	select p.PROD_NUM, PROD_SUPPLIER, PROD_DEL_FEE, PROD_IMAGE, PROD_NAME, PROD_PRICE,
 			 CART_PRICE, CART_QTY, MEM_ID
 	from products p, cart c
-	where p.PROD_NUM = c.PROD_NUM and c.MEM_ID = #{memId}
-	and p.PROD_NUM = #{prodNum}
+	where p.PROD_NUM = c.PROD_NUM and c.MEM_ID = #{memId} and p.PROD_NUM = #{prodNum}
 </select>
 
 <update id="goodsCartQtyDown" parameterType="model.CartDTO">
@@ -133,5 +133,86 @@ update cart
 	delete from cart
 	where MEM_ID = #{memId} and PROD_NUM = #{prodNum}
 </delete>
+
+<select id="baseOrderList" parameterType="string" resultType="model.OrderListDTO">
+	select p1.PROD_NUM prodNum, PROD_SUPPLIER prodSupplier, PROD_NAME prodName, PROD_IMAGE prodImage, 
+		   p2.PURCHASE_NUM purchaseNum, 
+		   PURCHASE_DATE purchaseDate, PURCHASE_TOT_PRICE purchaseTotPrice,
+		   PAYMENT_APPR_NUM paymentApprNum,
+		   REVIEW_CONTENT reviewContent
+	from products p1, purchase_list p2, purchase p3, payment p4, review r
+	where p1.PROD_NUM = p2.PROD_NUM 
+	and p2.PURCHASE_NUM = p3.PURCHASE_NUM
+	and p2.PURCHASE_NUM = p4.PURCHASE_NUM(+)
+	and p2.PURCHASE_NUM = r.PURCHASE_NUM(+)
+	and p2.PROD_NUM = r.PROD_NUM(+)
+	and p3.MEM_ID = #{memId}
+	order by purchaseNum desc
+</select>
+
+
+<sql id="PAYMENTAPPRNUM">
+		select to_char(sysdate,'yyyymmdd') || 
+        nvl2(max(PAYMENT_APPR_NUM),substr(max(PAYMENT_APPR_NUM),-6),100000)+1
+        from payment
+        where substr(PAYMENT_APPR_NUM,1,8) = to_char(sysdate,'yyyymmdd')
+</sql>
+
+<insert id="doPayment" parameterType="model.PaymentDTO">
+	insert into payment
+	(PURCHASE_NUM, PAYMENT_METHOD, PAYMENT_APPR_PRICE, PAYMENT_APPR_NUM, PAYMENT_APPR_DATE, PAYMENT_NUMBER )
+	values ( #{purchaseNum},#{paymentMethod},#{paymentApprPrice}, (<include refid="PAYMENTAPPRNUM"/>) ,sysdate, #{paymentNumber} )
+</insert>
+
+<insert id="reviewWrite" parameterType="model.ReviewDTO">
+	insert into review
+	(PURCHASE_NUM, PROD_NUM, REVIEW_DATE, REVIEW_CONTENT, REVIEW_IMG)
+	values (#{purchaseNum},#{prodNum},sysdate,#{reviewContent},
+	<if test="reviewImg!=null">#{reviewImg}</if>
+	<if test="reviewImg==null">null</if>)
+</insert>
+
+<select id="reviewInfo" parameterType="model.ReviewDTO" resultType="model.ReviewDTO">
+	select PURCHASE_NUM purchaseNum, PROD_NUM prodNum, REVIEW_DATE reviewDate, REVIEW_CONTENT reviewContent, REVIEW_IMG reviewImg
+	from review
+	where PURCHASE_NUM=#{purchaseNum} and PROD_NUM=#{prodNum}
+</select>
+
+<update id="reviewUpdate" parameterType="model.ReviewDTO">
+	update review 
+	set REVIEW_CONTENT = #{reviewContent}
+	where PURCHASE_NUM = #{purchaseNum} and PROD_NUM = #{prodNum}
+</update>
+
+<resultMap type="model.GoodsReviewsDTO" id="goodsReviewsMap">
+	<association property="goods" javaType="model.GoodsDTO">
+		<id column="PROD_NUM" jdbcType="BIGINT" property="prodNum"/>	
+		<result column="PROD_NAME" jdbcType="VARCHAR" property="prodName"/>	
+		<result column="PROD_PRICE" jdbcType="BIGINT" property="prodPrice"/>	
+		<result column="PROD_IMAGE" jdbcType="VARCHAR" property="prodImage"/>	
+		<result column="PROD_DETAIL" jdbcType="VARCHAR" property="prodDetail"/>	
+		<result column="PROD_CAPACITY" jdbcType="BIGINT" property="prodCapacity"/>	
+		<result column="PROD_SUPPLIER" jdbcType="VARCHAR" property="prodSupplier"/>	
+		<result column="PROD_DEL_FEE" jdbcType="BIGINT" property="prodDelFee"/>	
+		<result column="RECOMMEND" jdbcType="VARCHAR" property="recommend"/>	
+		<result column="EMPLOYEE_ID" jdbcType="BIGINT" property="employeeId"/>	
+		<result column="CTGR" jdbcType="VARCHAR" property="ctgr"/>	
+	</association>
+
+	<collection property="reviews" ofType="model.ReviewDTO">
+		<id column="PROD_NUM" jdbcType="BIGINT" property="prodNum"/>
+		<id column="PURCHASE_NUM" jdbcType="BIGINT" property="purchaseNum"/>
+		<result column="REVIEW_DATE" jdbcType="DATE" property="reviewDate"/>
+		<result column="REVIEW_CONTENT" jdbcType="VARCHAR" property="reviewContent"/>
+		<result column="REVIEW_IMG" jdbcType="VARCHAR" property="reviewImg"/> 
+	</collection>
+</resultMap>
+
+<select id="goodsReviews" parameterType="string" resultMap="goodsReviewsMap">
+	select p.PROD_NUM, PROD_NAME, PROD_PRICE, PROD_IMAGE, PROD_DETAIL, PROD_CAPACITY, PROD_SUPPLIER, PROD_DEL_FEE, RECOMMEND, EMPLOYEE_ID, CTGR
+	   	   PURCHASE_NUM, REVIEW_DATE, REVIEW_CONTENT, REVIEW_IMG
+	from products p, review r
+	where p.PROD_NUM = r.PROD_NUM(+) and p.PROD_NUM = #{prodNum}
+</select>
 
 </mapper>

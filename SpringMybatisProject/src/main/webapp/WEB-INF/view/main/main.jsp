@@ -71,9 +71,10 @@ table {
 		<!-- 일반 사용자 -->
 		<a href="edit/myPage">마이페이지</a>
 		<a href="cart/goodsCartList">장바구니</a>
+		<a href="cart/orderProcessList">구매확인</a>
 				
-		<a href="ajaxTest">ajax</a>
-		<a href="ajaxTest2">ajaxTest2</a>
+	<!--<a href="ajaxTest">ajax</a>
+		<a href="ajaxTest2">ajaxTest2</a>-->	
 		</c:if>
 
 		<c:if test="${authInfo.grade != 1 }">

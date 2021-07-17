@@ -42,8 +42,7 @@ public class GoodsOrderService {
 			int i = goodsRepository.purchaseListInsert(d);
 			if(i==1) {
 				goodsRepository.cartDelete(d);
-			}
-			
+			}			
 		} return purchaseNum; // 변경
 	} 
 }

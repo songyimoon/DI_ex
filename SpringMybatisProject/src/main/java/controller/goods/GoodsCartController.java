@@ -11,11 +11,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.GoodsOrderCommand;
+import command.ReviewCommand;
+import service.goods.DoPaymentService;
 import service.goods.GoodsBuyService;
 import service.goods.GoodsCartAddService;
 import service.goods.GoodsCartListService;
 import service.goods.GoodsCartQtyDownService;
 import service.goods.GoodsOrderService;
+import service.goods.GoodsReviewUpdateService;
+import service.goods.OrderProcessListService;
+import service.goods.ReviewWriteService;
 
 @Controller
 @RequestMapping("cart")
@@ -30,6 +35,14 @@ public class GoodsCartController {
 	GoodsBuyService goodsBuyService;
 	@Autowired
 	GoodsOrderService goodsOrderService;
+	@Autowired
+	OrderProcessListService orderProcessListService;
+	@Autowired
+	DoPaymentService doPaymentService;
+	@Autowired
+	ReviewWriteService reviewWriteService;
+	@Autowired
+	GoodsReviewUpdateService goodsReviewUpdateService;
 	
 	@RequestMapping(value = "goodsCartAdd", method = RequestMethod.POST)
 	public String goodsCartAdd(@RequestParam (value = "cartQty") int cartQty, 
@@ -75,10 +88,39 @@ public class GoodsCartController {
 							@ModelAttribute(value = "payPrice") String payPrice) {
 		return "goods/payment";
 	}
-	
-	
-	
-	
-	
+	@RequestMapping("orderProcessList")
+	public String orderProcessList(HttpSession session, Model model) {
+		orderProcessListService.orderList(session, model);
+		return "goods/purchaseCon";
+	}
+	@RequestMapping(value = "doPayment", method = RequestMethod.POST)
+	public String doPayment(@RequestParam(value = "purchaseNum") String purchaseNum,
+							@RequestParam(value = "paymentApprPrice") String paymentApprPrice,
+							@RequestParam(value = "paymentNumber") String paymentNumber, Model model){
+		doPaymentService.doPayment(purchaseNum, paymentApprPrice, paymentNumber, model);
+		return "goods/buyFinished";
+	}
+	@RequestMapping("goodsReview")
+	public String goodsReview(@ModelAttribute(value = "purchaseNum") String purchaseNum,
+							  @ModelAttribute(value = "prodNum") String prodNum) {
+		return "goods/goodsReview";
+	}
+	@RequestMapping(value = "reviewWrite", method = RequestMethod.POST)
+	public String reviewWrite(ReviewCommand reviewCommand, HttpSession session) {
+		reviewWriteService.reviewWrite(reviewCommand, session);
+		return "redirect:orderProcessList";
+	}
+	@RequestMapping("goodsReviewUpdate")
+	public String reviewUpdate(@ModelAttribute (value = "purchaseNum") String purchaseNum,
+			@ModelAttribute (value = "prodNum") String prodNum,
+								HttpSession session, Model model) {
+		goodsReviewUpdateService.reviewInfo(purchaseNum, prodNum, session, model);
+		return "goods/goodsReviewModify";
+	}
+	@RequestMapping("reviewUpdate")
+	public String reviewUpdate(ReviewCommand reviewCommand) {
+		goodsReviewUpdateService.reviewUpdate(reviewCommand);
+		return "redirect:orderProcessList";
+	}
 	
 }
