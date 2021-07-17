@@ -41,7 +41,7 @@ table{
 		<option value="refund">교환반품</option>	
 	</select></td></tr>
 	<tr><th bgcolor=#e0e0eb>첨부파일</th>
-	<td><input type="file" name="noticeFile"/></td></tr>
+	<td><input type="file" name="noticeFile" multiple="multiple"/></td></tr>
 	<tr><th bgcolor=#e0e0eb>조회수</th>
 	<td><input type="text" name="noticeHits"/></td></tr>
 	<tr><th bgcolor=#e0e0eb>글쓴이(사원)</th>

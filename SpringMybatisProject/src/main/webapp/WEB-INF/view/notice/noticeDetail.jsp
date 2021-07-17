@@ -68,15 +68,18 @@ table{
 	<tr><th bgcolor=#e0e0eb>첨부파일</th>
 	<td colspan="4"> 
 	
-	<c:if test="${!empty noticeCommand.noticeFile }">
-	<img width = "250" height="280" src="notice/upload/${noticeCommand.noticeFile }">
-	</c:if>
+	
+	<c:forTokens items="${noticeCommand.noticeFile}" delims="," var="image">	
+		<img src="../notice/upload/${image }" width="200px"/>
+	</c:forTokens>
+	
+
 	
 	</td></tr>
 
 	
 	<tr><th colspan="4" bgcolor=#e0e0eb>
-		<input type="button" value="홈으로" onclick="javascript:location.href='main.sm'"/>
+		<input type="button" value="홈으로" onclick="javascript:location.href='../main'"/>
 
 </table>
 </form:form>

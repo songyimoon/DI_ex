@@ -3,6 +3,7 @@ package command;
 import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
 
 public class NoticeCommand {
 	String noticeNo;
@@ -11,10 +12,17 @@ public class NoticeCommand {
 	@DateTimeFormat(pattern="yyyy-MM-dd")
 	Date noticeDate;
 	String noticeKind;
-	String noticeFile;
+	MultipartFile [] noticeFile;
 	String noticeHits;
 	String employeeId;
+	String fileDel1;
 	
+	public String getFileDel1() {
+		return fileDel1;
+	}
+	public void setFileDel1(String fileDel1) {
+		this.fileDel1 = fileDel1;
+	}
 	public String getNoticeNo() {
 		return noticeNo;
 	}
@@ -32,9 +40,7 @@ public class NoticeCommand {
 	}
 	public void setNoticeCon(String noticeCon) {
 		this.noticeCon = noticeCon;
-	}
-
-	
+	}	
 	public Date getNoticeDate() {
 		return noticeDate;
 	}
@@ -46,11 +52,11 @@ public class NoticeCommand {
 	}
 	public void setNoticeKind(String noticeKind) {
 		this.noticeKind = noticeKind;
-	}
-	public String getNoticeFile() {
+	}	
+	public MultipartFile[] getNoticeFile() {
 		return noticeFile;
 	}
-	public void setNoticeFile(String noticeFile) {
+	public void setNoticeFile(MultipartFile[] noticeFile) {
 		this.noticeFile = noticeFile;
 	}
 	public String getNoticeHits() {

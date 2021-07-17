@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%> 
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ include file="../include/includeTags.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,12 +21,13 @@ table{
   width: 1200px;
   border: 1px solid;
   border-spacing: 8px;
+  }
 
 </style>
 </head>
 <body>
 <h1 align="center">공지사항</h1><br/>
-<p align="center" bgcolor=#e0e0eb><a href="noticeRegist"> ▶ 공지등록 </a></p>
+
 
 <table align="center">
 <tr bgcolor=#e0e0eb><th>번호</th>
@@ -48,12 +48,17 @@ table{
 	<td><a href="noticeDetail?noticeNo=${dto.noticeNo }">${dto.noticeSub }</a></td>
 	<td align="center">
 	<fmt:formatDate value="${dto.noticeDate }" type="date" pattern="yyyy-MM-dd"/>	</td>
-	<td>${dto.noticeFile }</td>
+	<td align="center">
+	<c:if test="${dto.noticeFile!=null}">V</c:if>
+	<c:if test="${dto.noticeFile==null}"></c:if>
+	</td>
 	<td align="center">${dto.noticeHits }</td>
 	<td align="center">${dto.employeeId }</td></tr>
 </c:forEach>	
 </table>
 <br/>
+
+<p align="center" bgcolor=#e0e0eb><a href="noticeRegist">공지등록 </a></p>
 <p align="center">
 <input type="button" value="뒤로가기" onclick="javascript:history.back();"/>
 </p>

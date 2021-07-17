@@ -25,4 +25,15 @@ public class NoticeRepository {
 		statement = nameSpace + ".noticeDetail";
 		return sqlSession.selectOne(statement, noticeNo);
 	}
+	public void noticeInsert(NoticeDTO dto) {
+		statement = nameSpace + ".noticeInsert";
+		int i = sqlSession.insert(statement, dto);
+		System.out.println(i+"개 행이 입력되었습니다.");
+	}
+	public void noticeUpdate(NoticeDTO dto) {
+		statement = nameSpace + ".noticeUpdate";
+		int i = sqlSession.update(statement, dto);
+		System.out.println(i+"개 행이 수정되었습니다.");
+		
+	}
 }

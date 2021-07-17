@@ -20,4 +20,21 @@
 	where NOTICE_NO = #{noticeNo}
 </select>
 
+<insert id="noticeInsert" parameterType="nd">
+	insert into notice	
+	(NOTICE_NO, NOTICE_SUB, NOTICE_CON, NOTICE_DATE,
+	NOTICE_KIND, NOTICE_FILE, NOTICE_HITS, EMPLOYEE_ID)
+	values	
+	(#{noticeNo},#{noticeSub},#{noticeCon},sysdate,
+	#{noticeKind},
+	<if test="noticeFile!=null">#{noticeFile}</if>
+	<if test="noticeFile==null">null</if>
+	,#{noticeHits},#{employeeId})
+</insert>
+<update id="noticeUpdate" parameterType="nd">
+	update notice 
+	set NOTICE_SUB =#{noticeSub},NOTICE_CON=#{noticeCon},NOTICE_KIND=#{noticeKind},NOTICE_HITS=#{noticeHits}, EMPLOYEE_ID=#{employeeId}, NOTICE_FILE=#{noticeFile}
+ 	where NOTICE_NO = #{noticeNo}
+</update>
+
 </mapper>

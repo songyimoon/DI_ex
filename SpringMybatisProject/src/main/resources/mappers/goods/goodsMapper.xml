@@ -8,7 +8,8 @@
 </select>
 	
 <insert id="goodsInsert" parameterType="gd">
-	insert into products (PROD_NUM, PROD_NAME, PROD_PRICE, PROD_IMAGE, PROD_DETAIL,
+	insert into products 
+	(PROD_NUM, PROD_NAME, PROD_PRICE, PROD_IMAGE, PROD_DETAIL,
 	 PROD_CAPACITY, PROD_SUPPLIER, PROD_DEL_FEE, RECOMMEND, EMPLOYEE_ID, CTGR)
 	values (#{prodNum},#{prodName},#{prodPrice},
 	<if test="prodImage!=null">#{prodImage}</if>

@@ -44,11 +44,8 @@ public class GoodsInsertService {
 				String filePath = session.getServletContext().getRealPath("WEB-INF/view/goods/upload");
 				File file = new File(filePath + "/" + store);
 				// 파일 저장
-				try {
-					mf.transferTo(file);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+				try {mf.transferTo(file);} 
+				catch (Exception e) {e.printStackTrace();}
 			}
 			dto.setProdImage(prodImage);
 
