@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import command.NoticeCommand;
+import service.notice.NoticeDeleteService;
 import service.notice.NoticeDetailService;
 import service.notice.NoticeEmpIdService;
 import service.notice.NoticeJoinService;
@@ -19,8 +20,7 @@ import service.notice.NoticeUpdateService;
 @Controller
 @RequestMapping("notice")
 public class NoticeController {
-	@Autowired
-	NoticeNumService noticeNumService;
+
 	@Autowired
 	NoticeEmpIdService noticeEmpIdService;
 	@Autowired
@@ -31,6 +31,8 @@ public class NoticeController {
 	NoticeDetailService noticeDetailService;
 	@Autowired
 	NoticeUpdateService noticeUpdateService;
+	@Autowired
+	NoticeDeleteService noticeDeleteService;
 	
 	@RequestMapping("noticeList")
 	public String noticeList(Model model) {
@@ -40,7 +42,6 @@ public class NoticeController {
 	
 	@RequestMapping("noticeRegist")
 	public String noticeRegist(Model model, HttpSession session) {
-		noticeNumService.noticeNo(model);
 		noticeEmpIdService.empId(model, session);
 		return "notice/noticeRegist";
 	}
@@ -64,6 +65,11 @@ public class NoticeController {
 	@RequestMapping("noticeModifyOk")
 	public String noticeUpdate(NoticeCommand noticeCommand, HttpSession session){
 		noticeUpdateService.noticeUpdate(noticeCommand,session);
+		return "redirect:noticeList";
+	}
+	@RequestMapping("noticeDel")
+	public String noticeDel(@RequestParam (value = "noticeNo") String noticeNo) {
+		noticeDeleteService.noticeDelete(noticeNo);
 		return "redirect:noticeList";
 	}
 }

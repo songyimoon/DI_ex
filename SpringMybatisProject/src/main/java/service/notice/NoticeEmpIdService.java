@@ -9,7 +9,7 @@ import model.AuthInfoDTO;
 public class NoticeEmpIdService {
 	public void empId(Model model, HttpSession session) {
 		AuthInfoDTO authInfo = (AuthInfoDTO)session.getAttribute("authInfo");
-		String empId=authInfo.getGrade();
-		model.addAttribute("empId", empId);
+		String employeeId=authInfo.getGrade();
+		model.addAttribute("employeeId", employeeId);
 	}
 }

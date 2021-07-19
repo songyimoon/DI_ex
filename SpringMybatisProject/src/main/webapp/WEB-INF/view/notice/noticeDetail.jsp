@@ -67,8 +67,7 @@ table{
 	
 	<tr><th bgcolor=#e0e0eb>첨부파일</th>
 	<td colspan="4"> 
-	
-	
+ 
 	<c:forTokens items="${noticeCommand.noticeFile}" delims="," var="image">	
 		<img src="../notice/upload/${image }" width="200px"/>
 	</c:forTokens>

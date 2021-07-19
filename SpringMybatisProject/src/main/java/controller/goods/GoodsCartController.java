@@ -15,8 +15,10 @@ import command.ReviewCommand;
 import service.goods.DoPaymentService;
 import service.goods.GoodsBuyService;
 import service.goods.GoodsCartAddService;
+import service.goods.GoodsCartDeleteService;
 import service.goods.GoodsCartListService;
 import service.goods.GoodsCartQtyDownService;
+import service.goods.GoodsCartRemoveService;
 import service.goods.GoodsOrderService;
 import service.goods.GoodsReviewUpdateService;
 import service.goods.OrderProcessListService;
@@ -43,6 +45,10 @@ public class GoodsCartController {
 	ReviewWriteService reviewWriteService;
 	@Autowired
 	GoodsReviewUpdateService goodsReviewUpdateService;
+	@Autowired
+	GoodsCartDeleteService goodsCartDeleteService;
+	@Autowired
+	GoodsCartRemoveService goodsCartRemoveService;
 	
 	@RequestMapping(value = "goodsCartAdd", method = RequestMethod.POST)
 	public String goodsCartAdd(@RequestParam (value = "cartQty") int cartQty, 
@@ -121,6 +127,16 @@ public class GoodsCartController {
 	public String reviewUpdate(ReviewCommand reviewCommand) {
 		goodsReviewUpdateService.reviewUpdate(reviewCommand);
 		return "redirect:orderProcessList";
+	}
+	@RequestMapping("cartGoodsDel")
+	public String cartGoodsDel(@RequestParam (value = "prodNum") String prodNum, HttpSession session) {
+		goodsCartDeleteService.cartGoodsDel(prodNum, session);
+		return "redirect:goodsCartList";
+	}
+	@RequestMapping("goodsCartRemove")
+	public String goodsCartRemove(@RequestParam (value = "prodNums") String prodNum, HttpSession session) {	
+		goodsCartRemoveService.goodsCartRemove(prodNum,session);
+		return "redirect:goodsCartList";
 	}
 	
 }

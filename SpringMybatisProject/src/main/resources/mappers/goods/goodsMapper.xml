@@ -216,4 +216,23 @@ update cart
 	where p.PROD_NUM = r.PROD_NUM(+) and p.PROD_NUM = #{prodNum}
 </select>
 
+<delete id="cartGoodsDel" parameterType="model.CartDTO">
+	delete from cart
+	where PROD_NUM = #{prodNum} and MEM_ID = #{memId}
+</delete>
+
+<delete id="goodsCartRemove" parameterType="hashMap">
+	delete from cart
+	<where>
+		<if test="prodNums!=null">
+		MEM_ID = #{memId}
+		and
+		PROD_NUM in 
+		<foreach collection="prodNums" item="prodNum" index="index" open="(" close=")" separator=",">
+		#{prodNum}</foreach></if>		
+	</where>
+</delete>
+
+
+
 </mapper>

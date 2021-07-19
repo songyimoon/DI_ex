@@ -33,7 +33,15 @@ public class NoticeRepository {
 	public void noticeUpdate(NoticeDTO dto) {
 		statement = nameSpace + ".noticeUpdate";
 		int i = sqlSession.update(statement, dto);
-		System.out.println(i+"개 행이 수정되었습니다.");
-		
+		System.out.println(i+"개 행이 수정되었습니다.");	
+	}
+	public void noticeReadCount(String noticeNo) {
+		statement = nameSpace + ".noticeReadCount";
+		sqlSession.update(statement, noticeNo);
+	}
+	public void noticeDelete(String noticeNo) {
+		statement = nameSpace + ".noticeDelete";
+		int i = sqlSession.delete(statement, noticeNo);
+		System.out.println(i+"개 행이 삭제되었습니다.");
 	}
 }

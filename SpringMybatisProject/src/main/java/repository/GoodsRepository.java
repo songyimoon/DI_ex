@@ -1,6 +1,7 @@
 package repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +104,15 @@ public class GoodsRepository {
 	public GoodsReviewsDTO goodsReviews(String prodNum) {
 		statement = namepspace + ".goodsReviews";
 		return sqlSession.selectOne(statement, prodNum);
+	}
+	public void cartGoodsDel(CartDTO dto) {
+		statement = namepspace + ".cartGoodsDel";
+		int i = sqlSession.delete(statement, dto);
+		System.out.println(i+"개 행이 삭제되었습니다.");
+	}
+	public void goodsCartRemove(Map<String, Object> condition) {
+		statement = namepspace + ".goodsCartRemove";
+		sqlSession.delete(statement,condition);
 	}
 }
 

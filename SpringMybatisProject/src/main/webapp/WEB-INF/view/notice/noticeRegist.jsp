@@ -26,8 +26,7 @@ table{
 <body>
 <form action="noticeJoin" method="post" name="frm" enctype="multipart/form-data">
 <table align="center">
-	<tr><th bgcolor=#e0e0eb>번호</th>
-	<td><input type="text" name="noticeNo" value="${noticeNo }"/></td></tr>
+
 	<tr><th bgcolor=#e0e0eb>제목</th>
 	<td><input type="text" name="noticeSub"/></td></tr>
 	<tr><th bgcolor=#e0e0eb>내용</th>
@@ -42,14 +41,13 @@ table{
 	</select></td></tr>
 	<tr><th bgcolor=#e0e0eb>첨부파일</th>
 	<td><input type="file" name="noticeFile" multiple="multiple"/></td></tr>
-	<tr><th bgcolor=#e0e0eb>조회수</th>
-	<td><input type="text" name="noticeHits"/></td></tr>
+
 	<tr><th bgcolor=#e0e0eb>글쓴이(사원)</th>
-	<td><input type="text" name="employeeId" value="${empId }" readonly="readonly"/></td></tr>
+	<td><input type="text" name="employeeId" value="${employeeId }" readonly="readonly"/></td></tr>
 	<tr><th colspan="2">
 		<input type="submit" value="등록"/>
 		<input type="reset" value="취소" onclick="javascript:history.back();"/>
-		<input type="button" value="홈으로" onclick="javascript:location.href='main'"/>
+		<input type="button" value="홈으로" onclick="javascript:location.href='../main'"/>
 </table>
 </form>
 </body>

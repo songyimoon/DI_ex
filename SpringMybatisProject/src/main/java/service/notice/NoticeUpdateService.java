@@ -20,11 +20,13 @@ public class NoticeUpdateService {
 		NoticeDTO dto = new NoticeDTO();
 		AuthInfoDTO authInfo = (AuthInfoDTO)session.getAttribute("authInfo");
 		//컨텐츠 수정
-		dto.setEmployeeId(authInfo.getGrade());
-		dto.setNoticeCon(noticeCommand.getNoticeCon());
-		dto.setNoticeHits(noticeCommand.getNoticeHits());
-		dto.setNoticeKind(noticeCommand.getNoticeKind());
+		String employeeId= authInfo.getGrade();
+		dto.setEmployeeId(employeeId);
 		dto.setNoticeSub(noticeCommand.getNoticeSub());	
+		dto.setNoticeCon(noticeCommand.getNoticeCon());
+		dto.setNoticeKind(noticeCommand.getNoticeKind());
+	//	dto.setNoticeHits(noticeCommand.getNoticeHits());
+		
 		dto.setNoticeNo(noticeCommand.getNoticeNo());		
 		
 		//파일수정

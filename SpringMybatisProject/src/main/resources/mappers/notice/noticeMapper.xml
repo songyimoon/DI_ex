@@ -20,21 +20,42 @@
 	where NOTICE_NO = #{noticeNo}
 </select>
 
+	<sql id="noticeNo">
+		select nvl(max(NOTICE_NO),0) + 1 from notice
+	</sql>
+	
+	
 <insert id="noticeInsert" parameterType="nd">
 	insert into notice	
 	(NOTICE_NO, NOTICE_SUB, NOTICE_CON, NOTICE_DATE,
 	NOTICE_KIND, NOTICE_FILE, NOTICE_HITS, EMPLOYEE_ID)
 	values	
-	(#{noticeNo},#{noticeSub},#{noticeCon},sysdate,
+	((<include refid="noticeNo"/>),#{noticeSub},#{noticeCon},sysdate,
 	#{noticeKind},
 	<if test="noticeFile!=null">#{noticeFile}</if>
 	<if test="noticeFile==null">null</if>
-	,#{noticeHits},#{employeeId})
+	,0,#{employeeId})
+	
 </insert>
+
 <update id="noticeUpdate" parameterType="nd">
 	update notice 
-	set NOTICE_SUB =#{noticeSub},NOTICE_CON=#{noticeCon},NOTICE_KIND=#{noticeKind},NOTICE_HITS=#{noticeHits}, EMPLOYEE_ID=#{employeeId}, NOTICE_FILE=#{noticeFile}
+	set NOTICE_SUB =#{noticeSub},NOTICE_CON=#{noticeCon},NOTICE_KIND=#{noticeKind},
+	EMPLOYEE_ID=#{employeeId},
+	NOTICE_FILE =#{noticeFile}
  	where NOTICE_NO = #{noticeNo}
 </update>
 
+
+<update id="noticeReadCount" parameterType="string">
+	update notice
+	set NOTICE_HITS = NOTICE_HITS + 1
+	where NOTICE_NO = #{noticeNo}
+</update>
+
+<delete id="noticeDelete" parameterType="string">
+	delete from notice
+	where NOTICE_NO = #{noticeNo}
+</delete>
+ 
 </mapper>

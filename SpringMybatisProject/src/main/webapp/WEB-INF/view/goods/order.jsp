@@ -90,7 +90,7 @@ table{
 </table>
 <table align="center">
 <tr><td align = "center"><input type="submit" value="결제하기" name=""/>
-		<input type="button" value="홈으로" onclick="javascript:location.href='main.sm'"/></td></tr>
+		<input type="button" value="홈으로" onclick="javascript:location.href='../main'"/></td></tr>
 </table>
 </form>
 </body>

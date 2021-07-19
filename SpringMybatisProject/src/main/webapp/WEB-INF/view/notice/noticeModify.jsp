@@ -67,7 +67,7 @@ p{
 	
 	
 	<tr><th>조회수</th>
-	<td><input type="text" name="noticeHits" value="${noticeCommand.noticeHits }"/></td></tr>
+	<td>${noticeCommand.noticeHits }</td></tr>
 	<tr><th>글쓴이(사원)</th>
 	<td>${noticeCommand.employeeId }</td></tr>
 	
@@ -75,7 +75,7 @@ p{
 		<input type="hidden" name="fileDel1" id="fileDel1"/>
 		<input type="submit" value="공지수정"/>
 		<input type="button" value="취소" onclick="javascript:history.back();"/>
-		<input type="button" value="삭제" onclick="javascript:location.href='noticeDel.nt?noticeNo=${noticeCommand.noticeNo}'"/>
+		<input type="button" value="삭제" onclick="javascript:location.href='noticeDel?noticeNo=${noticeCommand.noticeNo}'"/>
 		<input type="button" value="홈으로" onclick="javascript:location.href='../main'"/>
 
 </table>

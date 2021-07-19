@@ -10,7 +10,9 @@ public class NoticeDetailService {
 	@Autowired
 	NoticeRepository noticeRepository;
 	public void noticeDetail(String noticeNo, Model model) {
+		noticeRepository.noticeReadCount(noticeNo);
 		NoticeDTO dto = noticeRepository.noticeDetail(noticeNo);
+		
 		model.addAttribute("noticeCommand", dto);
 	}
 }

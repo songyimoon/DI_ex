@@ -19,12 +19,13 @@ public class NoticeJoinService {
 	public void noticeInsert(NoticeCommand noticeCommand, HttpSession session) {
 		NoticeDTO dto = new NoticeDTO();
 		AuthInfoDTO authInfo = (AuthInfoDTO)session.getAttribute("authInfo");
-		dto.setEmployeeId(authInfo.getGrade());
+		String employeeId=authInfo.getGrade();
+		
+		dto.setEmployeeId(employeeId);
 		dto.setNoticeCon(noticeCommand.getNoticeCon());
-		dto.setNoticeHits(noticeCommand.getNoticeHits());
 		dto.setNoticeKind(noticeCommand.getNoticeKind());
-		dto.setNoticeNo(noticeCommand.getNoticeNo());
 		dto.setNoticeSub(noticeCommand.getNoticeSub());
+		
 
 		if(!noticeCommand.getNoticeFile()[0].getOriginalFilename().isEmpty()) {
 		

@@ -7,11 +7,10 @@
          
 	<bean class="controller.notice.NoticeController"></bean>
 	<bean class="repository.NoticeRepository"/>
+	<bean class="service.notice.NoticeNumService"/>
 	<bean class="service.notice.NoticeEmpIdService"/>
 	<bean class="service.notice.NoticeListService"/>
 	<bean class="service.notice.NoticeDetailService"/>
 	<bean class="service.notice.NoticeJoinService"/>
 	<bean class="service.notice.NoticeUpdateService"/>
-	
-	<bean class="service.notice.NoticeDeleteService"/>
 </beans>

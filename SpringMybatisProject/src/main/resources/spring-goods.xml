@@ -23,6 +23,8 @@
 	<bean class="service.goods.ReviewWriteService" />
 	<bean class="service.goods.GoodsReviewUpdateService" />
 	<bean class="service.goods.GoodsReviewService" />
+	<bean class="service.goods.GoodsCartDeleteService" />
+	<bean class="service.goods.GoodsCartRemoveService" />
 
 
 

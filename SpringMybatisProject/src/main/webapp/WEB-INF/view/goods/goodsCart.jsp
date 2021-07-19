@@ -34,8 +34,7 @@ table{
 			return false;
 		}
 	}
-	
-	
+		
 	function prodChk(){
 		var prodTot = 0;
 		var chk = document.getElementsByName("prodCk"); // check를 배열로
@@ -66,6 +65,17 @@ table{
 		}
 	}
 	
+	function selectedDel(){
+		var chk = document.getElementsByName("prodCk");
+		var prodNums = '';
+		for(var i = 0; i < chk.length; i++){
+			if(chk[i].checked){
+				prodNums += chk[i].value+",";
+			}
+		}
+		location.href="goodsCartRemove?prodNums="+prodNums;
+	}
+	
 </script>
 </head>
 <body>
@@ -74,6 +84,11 @@ table{
 <table align="center">
 <form action="goodsBuy" method="post" onsubmit="return goodsCheck()">
  
+<tr>
+<td colspan="8">
+	<button type="button" id="cartGoodsDel" onclick="selectedDel()">선택항목 삭제</button>
+</td>
+</tr>
 
 <c:set var="price" value="0"/>
 <c:set var="cnt" value="0"/>
@@ -89,7 +104,8 @@ table{
 		<th bgcolor=#e0e0eb>적용금액</th>
 		<th bgcolor=#e0e0eb>배송비</th>
 		<th bgcolor=#e0e0eb>총 적용금액</th>
-		<td rowspan="2"><input type="button" value="삭제" onclick="javascript:location.href='cartProdDel?prodNum=${dto.cartDTO.prodNum}';"/></td>
+		<td rowspan="2">
+		<input type="button" value="삭제" onclick="javascript:location.href='cartGoodsDel?prodNum=${dto.cartDTO.prodNum}'"/></td>
 	</tr>
 	
 		
@@ -126,7 +142,7 @@ table{
 
 <tr><td colspan="8" align="center">
 	<input type="submit" value="구매하기"/>
-	<input type="button" value="홈으로" onclick="javascript:location.href='main'"/>
+	<input type="button" value="홈으로" onclick="javascript:location.href='../main'"/>
 	
 	</td></tr>
 
