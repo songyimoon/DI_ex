@@ -20,8 +20,7 @@ public class GoodsCartRemoveService {
 	public void goodsCartRemove(String prodNums, HttpSession session) {
 		AuthInfoDTO authInfo = (AuthInfoDTO)session.getAttribute("authInfo");
 		String memId=authInfo.getUserId();
-		CartDTO dto = new CartDTO();
-		String [] prodNumMap = prodNums.split(","); // mabatis는 in연산자 사용이 가능하다.
+		String [] prodNumMap = prodNums.split(","); 
 		List <String> cs = new ArrayList<String>();
 		for(String prodNum : prodNumMap) {
 			cs.add(prodNum);

@@ -3,9 +3,6 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="mappers.noticeMapper">
 
-<select id="noticeNum" resultType="string">
-	select NOTICE_SEQ.nextval from dual
-</select>
 
 <select id="noticeList" resultType="nd">
 	select NOTICE_NO noticeNo, NOTICE_SUB noticeSub, NOTICE_CON noticeCon, NOTICE_DATE noticeDate,
@@ -20,10 +17,9 @@
 	where NOTICE_NO = #{noticeNo}
 </select>
 
-	<sql id="noticeNo">
-		select nvl(max(NOTICE_NO),0) + 1 from notice
-	</sql>
-	
+<sql id="noticeNo">
+	select nvl(max(NOTICE_NO),0) + 1 from notice
+</sql>
 	
 <insert id="noticeInsert" parameterType="nd">
 	insert into notice	
@@ -35,7 +31,6 @@
 	<if test="noticeFile!=null">#{noticeFile}</if>
 	<if test="noticeFile==null">null</if>
 	,0,#{employeeId})
-	
 </insert>
 
 <update id="noticeUpdate" parameterType="nd">

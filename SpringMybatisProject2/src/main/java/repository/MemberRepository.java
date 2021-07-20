@@ -37,4 +37,8 @@ public class MemberRepository {
 		statement = namespace + ".memMyPageInfo";
 		return sqlSession.selectOne(statement,memId);
 	}
+	public void memMyPageInfoUpdate(MemberDTO dto) {
+		statement = namespace + ".memMyPageInfoUpdate";
+		sqlSession.update(statement, dto);
+	}
 }

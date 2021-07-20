@@ -17,7 +17,7 @@ public class MemMypageInfoModifyOkService {
 	@Autowired
 	BCryptPasswordEncoder bcryptPasswordEncoder;
 	
-	public void memMypageInfoModifyOk(HttpSession session, MemberCommand memberCommand, Errors errors) {
+public void memMypageInfoModifyOk(HttpSession session, MemberCommand memberCommand, Errors errors) {
 		
 		AuthInfoDTO authInfo = (AuthInfoDTO) session.getAttribute("authInfo");
 		String memId = authInfo.getUserId();		

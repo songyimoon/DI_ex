@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import command.GoodsOrderCommand;
 import command.ReviewCommand;
-import service.goods.DoPaymentService;
+import service.goods.DoPaymentService; 
 import service.goods.GoodsBuyService;
 import service.goods.GoodsCartAddService;
 import service.goods.GoodsCartDeleteService;
@@ -83,6 +83,7 @@ public class GoodsCartController {
 		goodsBuyService.goodBuy(prodNums, session, model);
 		return "goods/order";
 	}
+	
 	@RequestMapping("goodsOrder")
 	public String goodsOrder(GoodsOrderCommand goodsOrderCommand, HttpSession session) {
 		// GoodsOrderCommand가 가지고 있는 값을 구매 테이블에 전달하자.
@@ -134,8 +135,8 @@ public class GoodsCartController {
 		return "redirect:goodsCartList";
 	}
 	@RequestMapping("goodsCartRemove")
-	public String goodsCartRemove(@RequestParam (value = "prodNums") String prodNum, HttpSession session) {	
-		goodsCartRemoveService.goodsCartRemove(prodNum,session);
+	public String goodsCartRemove(@RequestParam (value = "prodNums") String prodNums, HttpSession session) {	
+		goodsCartRemoveService.goodsCartRemove(prodNums,session);
 		return "redirect:goodsCartList";
 	}
 	

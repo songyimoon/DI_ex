@@ -38,14 +38,12 @@ public class NoticeController {
 	public String noticeList(Model model) {
 		noticeListService.noticeList(model);
 		return "notice/noticeList";
-	}
-	
+	}	
 	@RequestMapping("noticeRegist")
 	public String noticeRegist(Model model, HttpSession session) {
 		noticeEmpIdService.empId(model, session);
 		return "notice/noticeRegist";
 	}
-	
 	@RequestMapping("noticeJoin")
 	public String noticeJoin(NoticeCommand noticeCommand, HttpSession session) {
 		noticeJoinService.noticeInsert(noticeCommand,session);

@@ -52,6 +52,9 @@ public class MemberRepository {
 		statement = namespace + ".updateCkOk";
 		return sqlSession.update(statement, dto);
 	}
-	
+	public String idFind(MemberDTO dto) {
+		statement = namespace + ".idFind";
+		return sqlSession.selectOne(statement,dto);
+	}
 	
 }

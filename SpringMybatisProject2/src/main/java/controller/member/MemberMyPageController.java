@@ -5,8 +5,10 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import command.MemberCommand;
 import service.member.MemberMyPageInfoModifyService;
@@ -36,9 +38,12 @@ public class MemberMyPageController {
 		memberMyPageInfoService.memMyPageInfo(model,session);
 		return "member/memMyPageModify";
 	}
-	@RequestMapping("memMyPageInfoModifyOk")
-	public String memMyPageInfoModifyOk() {
-		memberMyPageInfoModifyService.memMypageInfoUpdate();
-		return "";
+	@RequestMapping(value = "memMyPageInfoModifyOk", method = RequestMethod.POST)
+	public String memMyPageInfoModifyOk(HttpSession session, MemberCommand memberCommand, Errors errors) {
+		memberMyPageInfoModifyService.memMypageInfoUpdate(session, memberCommand, errors);
+		if(errors.hasErrors()) {
+			return "member/memMyPageModify";
+		}
+		return "redirect:memMyPageInfo";
 	}
 }

@@ -9,9 +9,9 @@
 	<bean id="loginRepository" class="repository.LoginRepository"/>
 	<bean class="controller.main.LoginController"/>
 	<bean id="mailService" class="controller.MailService"/>
-	<bean class="controller.ajax.AjaxController"/> 
+	<bean class="controller.ajax.AjaxController"/>  
 	
-	
-	
+	<bean class="service.main.IdFindFinishService"/>	
+	<bean class="service.main.FindPasswordService"/>	
 	
 </beans>

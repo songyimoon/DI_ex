@@ -69,4 +69,11 @@
 	where MEM_EMAIL = #{memEmail} and CK_OK is null
 </update>
 
+<select id="idFind" parameterType="model.MemberDTO" resultType="string">
+	select rpad(substr(MEM_ID,1,3), length(MEM_ID),'*')  
+	from member
+	where MEM_PHONE = #{memPhone} and MEM_NAME = #{memName} and MEM_EMAIL = #{memEmail}
+</select>
+
+
 </mapper>

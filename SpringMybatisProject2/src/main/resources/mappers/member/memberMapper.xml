@@ -43,5 +43,13 @@
 		where MEM_ID = #{memId}	
 	</select>
 	
+	<update id="memMyPageInfoUpdate" parameterType="model.MemberDTO">
+		update member
+		set
+		MEM_ADDRESS = #{memAddress}, MEM_PHONE = #{memPhone}, MEM_ACCOUNT = #{memAccount}, 
+		MEM_EMAIL = #{memEmail}, MEM_EMAIL_CK = #{memEmailCk}, POSTNUMBER = #{postNumber}, DETAIL_ADD = #{detailAdd}
+		where MEM_ID = #{memId}
+	</update>
+	
 	
 </mapper>

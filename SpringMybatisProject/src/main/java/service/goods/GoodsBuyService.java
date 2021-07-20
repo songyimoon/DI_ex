@@ -20,6 +20,8 @@ public class GoodsBuyService {
 		AuthInfoDTO authInfo = (AuthInfoDTO)session.getAttribute("authInfo");
 		String memId = authInfo.getUserId();
 		List <ProductCartDTO> list = new ArrayList<ProductCartDTO>();
+		
+		
 		for(String prodNum : prodNums) {
 			CartDTO dto = new CartDTO();
 			dto.setMemId(memId);

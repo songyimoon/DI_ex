@@ -49,6 +49,9 @@ table{
 		});		
 	});
 
+	 
+
+	
 	
 </script>
 </head>
@@ -65,7 +68,7 @@ table{
 	<tr>						<td align=right>
 								<button id="cart">장바구니</button>
 								&nbsp;&nbsp;&nbsp;&nbsp;
-								<button id="buy">바로구매</button>									
+								<button type="button" id="buy" onclick="javascript:location.href='../cart/goodsBuy?prodNum=${goodsReviews.goods.prodNum}&cartQty=#cartQty&prodPrice=${goodsReviews.goods.prodPrice}'"> 바로구매</button>
 								</td></tr>
 	<tr><td colspan="2">
 	<hr/>

@@ -50,8 +50,7 @@ public class EmployeeMyPageController {
 	}
 	@RequestMapping(value = "empMyPageModifyOk", method = RequestMethod.POST)
 	public String empMyPageModifyOk(HttpSession session, EmployeeCommand employeeCommand, Errors errors) {
-		empMyPageInfoModifyOkService.empMyPageInfoUpdate(session, employeeCommand, errors);
-		
+		empMyPageInfoModifyOkService.empMyPageInfoUpdate(session, employeeCommand, errors);		
 		if(errors.hasErrors()) {
 			return "employee/empMyPageInfoModify";
 		}
@@ -61,7 +60,6 @@ public class EmployeeMyPageController {
 	public String empPwChange() {
 		return "employee/empPwChange";
 	}
-
 	@RequestMapping("empPwChangeOk") 
 	public String empPwChangeOk(@RequestParam(value = "empPw") String empPw, HttpSession session, Model model, @ModelAttribute EmployeeCommand employeeCommand) {
 		String path = employeePwConfirmService.empPw(empPw,session,model);
@@ -73,14 +71,12 @@ public class EmployeeMyPageController {
 		if(errors.hasErrors()) {
 			return "employee/empPwChangeOk";
 		}
-		employeePwUpdateService.empPwUpdate(session,employeeCommand,errors);
-		
+		employeePwUpdateService.empPwUpdate(session,employeeCommand,errors);	
 		if(errors.hasErrors()) {
 			return "employee/empPwChangeOk";
 		}
 		return "redirect:/";
 	}
-	
 	@RequestMapping("empOut") 
 	public String empOut() {
 		return "employee/empOut";
