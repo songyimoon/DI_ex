@@ -19,7 +19,6 @@ public class MemberMyPageInfoModifyService {
 	public void memMypageInfoUpdate(HttpSession session, MemberCommand memberCommand, Errors errors) {
 		AuthInfoDTO authInfo = (AuthInfoDTO)session.getAttribute("authInfo");
 		String memId = authInfo.getUesrId();
- 
 		if(bcryptPasswordEncoder.matches(memberCommand.getMemPw(), authInfo.getUserPw())) {		
 			MemberDTO dto = new MemberDTO();
 			dto.setPostNumber(memberCommand.getPostNumber());
@@ -33,7 +32,7 @@ public class MemberMyPageInfoModifyService {
 			memberRepository.memMyPageInfoUpdate(dto);
 			
 		}else {
-			errors.reject("memPw", "notPw");
+			errors.rejectValue("memPw", "notPw");
 		}
 		 
 	}

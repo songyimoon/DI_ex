@@ -42,6 +42,9 @@ table{
 	<td>${dto.memEmail }</td>
 	<td>${dto.memAddress } ${dto.detailAdd }</td></tr>
 	</c:forEach>
+	<tr><td colspan="5" align="center">
+		<%@include file="../include/includePage.jsp" %>
+	</td></tr>
 </table>
 </body>
 </html>

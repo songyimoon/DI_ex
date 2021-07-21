@@ -26,10 +26,15 @@
 		values (#{employeeId},#{empUserId},#{empPw},#{empName},#{hireDate},#{jobId},#{PhNumber},#{officeNumber},#{empEmail},#{empAddress})
 </insert>
 
-<select id="empList" resultType="model.EmployeeDTO">
-		select
-		<include refid="baseColumn"/>
-		from employees
+<select id="empList" resultType="model.EmployeeDTO" parameterType="model.EmployeeDTO">
+		select rn, employeeId, empUserId, empPw, empName, hireDate, jobId, PhNumber, officeNumber, empEmail, empAddress	
+		from (select ROWNUM rn, <include refid="baseColumn"/>
+		from employees)
+		where rn between #{startEndPageDTO.startRow} and #{startEndPageDTO.endRow} 		
+</select>
+
+<select id="count" resultType="int">
+	select count(*) from employees
 </select>
 
 <select id="empInfo" parameterType="string" resultType="model.EmployeeDTO">

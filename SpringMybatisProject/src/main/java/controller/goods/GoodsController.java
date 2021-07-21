@@ -38,8 +38,8 @@ public class GoodsController {
 	GoodsDeleteService goodsDeleteService;
 	
 	@RequestMapping("goodsList")
-	public String goodsList(Model model) {
-		goodsListService.goodsList(model);
+	public String goodsList(@RequestParam(value="page", defaultValue = "1") Integer page, Model model) {
+		goodsListService.goodsList(model,page);
 		return "goods/goodsList";
 	}
 	@RequestMapping("goodsRegist")

@@ -12,7 +12,16 @@ public class NoticeDTO {
 	String noticeFile;
 	String noticeHits;
 	String employeeId;
+	StartEndPageDTO startEndPageDTO;
 	
+	
+	
+	public StartEndPageDTO getStartEndPageDTO() {
+		return startEndPageDTO;
+	}
+	public void setStartEndPageDTO(StartEndPageDTO startEndPageDTO) {
+		this.startEndPageDTO = startEndPageDTO;
+	}
 	public String getNoticeNo() {
 		return noticeNo;
 	}

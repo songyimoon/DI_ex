@@ -37,7 +37,7 @@ table{
 	<th>첨부파일</th>
 	<th>조회수</th>
 	<th>글쓴이(사원)</th>
-<c:forEach items="${lists }" var="dto">
+<c:forEach items="${noticeList }" var="dto">
 <tr><td align="center"><a href="noticeModify?noticeNo=${dto.noticeNo }">${dto.noticeNo }</a></td>
 	<td align="center">	
 		<c:if test="${dto.noticeKind == 'not'}">일반공지</c:if>
@@ -55,6 +55,9 @@ table{
 	<td align="center">${dto.noticeHits }</td>
 	<td align="center">${dto.employeeId }</td></tr>
 </c:forEach>	
+	<tr><td colspan="7" align="center">
+		<%@include file="../include/includePage.jsp" %>
+	</td></tr>
 </table>
 <br/>
 

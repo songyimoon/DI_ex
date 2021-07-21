@@ -28,24 +28,23 @@ public class MemberInfoController {
 	
 	
 	@RequestMapping("memList")
-	public String memList(Model model) {
-		memberListService.memList(model,null);
+	public String memList(@RequestParam(value = "page", defaultValue = "1") Integer page, Model model) {
+		memberListService.memList(model,null,page);
 		return "member/memberList";
 	}
 	@RequestMapping("memInfo/{memId}") // 주소는 뒤에 아이디값 가져오므로 특정할 수 없음
 	public String memInfo(@PathVariable(value = "memId") String memId, Model model) { // variable한 aaaaa값을 memId에 저장하자
-		memberListService.memList(model,memId);
+		memberListService.memList(model,memId,null);
 		return "member/memberInfo";
 	}
 	@RequestMapping("memMod/{memId}")
 	public String memMod(@PathVariable(value = "memId") String memId, Model model) {
-		memberListService.memList(model,memId);
+		memberListService.memList(model,memId,null);
 		return "member/memberModify";
 	}
 	@RequestMapping(value = "memModifyOk", method = RequestMethod.POST )
 	public String memUpdate(MemberCommand memberCommand) {
 		memberUpdateService.memUpdate(memberCommand);
-		
 		
 		String encodedParam = "";
 		try {

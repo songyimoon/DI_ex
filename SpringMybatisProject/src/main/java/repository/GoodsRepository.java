@@ -29,9 +29,9 @@ public class GoodsRepository {
 		statement = namepspace + ".goodsInsert";
 		sqlSession.insert(statement,dto);
 	}
-	public List<GoodsDTO> goodsList(){
+	public List<GoodsDTO> goodsList(GoodsDTO dto){
 		statement = namepspace+".goodsList";
-		return sqlSession.selectList(statement);
+		return sqlSession.selectList(statement,dto);
 	}
 	public GoodsDTO goodsDetail(String prodNum) {
 		statement = namepspace + ".goodsDetail";
@@ -113,6 +113,10 @@ public class GoodsRepository {
 	public void goodsCartRemove(Map<String, Object> condition) {
 		statement = namepspace + ".goodsCartRemove";
 		sqlSession.delete(statement,condition);
+	}
+	public Integer getGoodsCount() {
+		statement = namepspace + ".getGoodsCount";
+		return sqlSession.selectOne(statement);
 	}
 }
 

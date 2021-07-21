@@ -13,6 +13,6 @@ public class MemberListService {
 	MemberRepository memberRepository;
 	public void memList(Model model, String memId) {
 		List<MemberDTO> list = memberRepository.memList(memId);
-		model.addAttribute("lists",list);
+		model.addAttribute("lists",list); 
 	}
 }

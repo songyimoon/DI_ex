@@ -4,10 +4,16 @@
 <mapper namespace="mappers.noticeMapper">
 
 
-<select id="noticeList" resultType="nd">
-	select NOTICE_NO noticeNo, NOTICE_SUB noticeSub, NOTICE_CON noticeCon, NOTICE_DATE noticeDate,
+<select id="noticeList" resultType="nd" parameterType="nd">
+	select rn, noticeNo, noticeSub, noticeCon, noticeDate, noticeKind, noticeFile, noticeHits, employeeId
+	from (select ROWNUM rn, NOTICE_NO noticeNo, NOTICE_SUB noticeSub, NOTICE_CON noticeCon, NOTICE_DATE noticeDate,
 	NOTICE_KIND noticeKind, NOTICE_FILE noticeFile, NOTICE_HITS noticeHits, EMPLOYEE_ID employeeId
-	from notice
+	from notice)
+	where rn between #{startEndPageDTO.startRow} and #{startEndPageDTO.endRow} 
+</select>
+
+<select id="count" resultType="int">
+	select count(*) from notice
 </select>
 
 <select id="noticeDetail" parameterType="string" resultType="nd">

@@ -37,12 +37,15 @@ table {
 
 			<table align="center" width="500" >
 				<tr>
-					<td colspan="3" align="center">아이디저장 | 자동로그인</td>
+					<td colspan="3" align="center"> 아이디저장 <input type="checkbox" name="idStore" <c:if test="${!empty isId }">checked</c:if>/> 
+				
+					
+					 | 자동로그인  <input type="checkbox" name="autoLogin"/> </td>
 				</tr>
 
 				<tr>
 					<th>아이디</th>
-					<td align="center"><form:input path="userId" />
+					<td align="center"><form:input path="userId" value="${isId }"/>
 						<form:errors path="userId" /></td>
 					<td rowspan="2"><input type="image" src="images/login64.png" width="60" alt="login" /></td>
 				</tr>

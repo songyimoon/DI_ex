@@ -20,7 +20,7 @@ public class GoodsReviewUpdateService {
 		dto.setProdNum(prodNum);
 		dto.setPurchaseNum(purchaseNum);
 		dto = goodsRepository.reviewInfo(dto);
-		//model.addAttribute("dto",dto);
+		model.addAttribute("dto",dto);
 	}
 	
 	public void reviewUpdate(ReviewCommand reviewCommand) {

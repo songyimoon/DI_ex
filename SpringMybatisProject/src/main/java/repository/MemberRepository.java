@@ -20,9 +20,9 @@ public class MemberRepository {
 		int i = sqlSession.insert(statement,dto);
 		System.out.println(i+"개 행이 입력되었습니다.");
 	}	
-	public List<MemberDTO> memList(String memId) {
+	public List<MemberDTO> memList(MemberDTO dto) {
 		statement = namespace + ".memList";
-		return sqlSession.selectList(statement,memId);
+		return sqlSession.selectList(statement,dto);
 	}
 	public void memUpdate(MemberDTO dto) {
 		statement = namespace + ".memUpdate";
@@ -56,5 +56,8 @@ public class MemberRepository {
 		statement = namespace + ".idFind";
 		return sqlSession.selectOne(statement,dto);
 	}
-	
+	public Integer getMemberCount() {
+		statement = namespace + ".getMemberCount";
+		return sqlSession.selectOne(statement);
+	}
 }

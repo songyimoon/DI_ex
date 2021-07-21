@@ -17,9 +17,13 @@ public class NoticeRepository {
 		statement = nameSpace + ".noticeNum";
 		return sqlSession.selectOne(statement);
 	}
-	public List<NoticeDTO> noticeList(){
+	public List<NoticeDTO> noticeList(NoticeDTO dto){
 		statement = nameSpace + ".noticeList";
-		return sqlSession.selectList(statement);
+		return sqlSession.selectList(statement,dto);
+	}
+	public Integer count() {
+		statement = nameSpace + ".count";
+		return sqlSession.selectOne(statement);
 	}
 	public NoticeDTO noticeDetail(String noticeNo) {
 		statement = nameSpace + ".noticeDetail";

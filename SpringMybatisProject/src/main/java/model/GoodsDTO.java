@@ -12,7 +12,14 @@ public class GoodsDTO {
 	String recommend;
 	String employeeId;
 	String ctgr;
+	StartEndPageDTO startEndPageDTO;
 	
+	public StartEndPageDTO getStartEndPageDTO() {
+		return startEndPageDTO;
+	}
+	public void setStartEndPageDTO(StartEndPageDTO startEndPageDTO) {
+		this.startEndPageDTO = startEndPageDTO;
+	}
 	public Long getProdNum() {
 		return prodNum;
 	}

@@ -25,7 +25,8 @@ table{
 </style>
 </head>
 <body>
-<h1 align="center">상품 리스트 페이지</h1><br/>
+<h1 align="center">상품 리스트 페이지입니다.</h1><br/>
+<h3 align="center"> 상품의 개수는 ${count }개입니다</h3>
 <table align= "center">
 <tr bgcolor=#e0e0eb><th>상품번호</th>
 	<th>카테고리</th>
@@ -49,6 +50,9 @@ table{
 		<td align="center"><fmt:formatNumber value="${dto.prodPrice }" type="currency"/></td>
 		<td align="center"><fmt:formatNumber value="${dto.prodDelFee }" type="currency"/></td></tr>
 	</c:forEach>	
+		<tr><td colspan="8" align="center">
+				<%@include file="../include/includePage.jsp" %>
+		</td></tr>
 </table>
 <p align="center"><a href="goodsRegist">상품등록</a></p>
 </body>

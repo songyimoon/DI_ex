@@ -35,8 +35,8 @@ public class NoticeController {
 	NoticeDeleteService noticeDeleteService;
 	
 	@RequestMapping("noticeList")
-	public String noticeList(Model model) {
-		noticeListService.noticeList(model);
+	public String noticeList(@RequestParam(value = "page",defaultValue = "1") int page, Model model) {
+		noticeListService.noticeList(model,page);
 		return "notice/noticeList";
 	}	
 	@RequestMapping("noticeRegist")

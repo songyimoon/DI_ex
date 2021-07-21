@@ -18,13 +18,26 @@
 	#{prodCapacity},#{prodSupplier},#{prodDelFee},#{recommend},#{employeeId},#{ctgr})
 </insert>
 
-<select id="goodsList" resultType="gd">
-	select 
+<select id="goodsList" resultType="gd" parameterType="gd">
+select rn, prodNum, prodName, prodPrice, prodImage, prodDetail, prodCapacity, prodSupplier, prodDelFee, recommend, employeeId, ctgr
+	from (select ROWNUM rn,
 	PROD_NUM prodNum, PROD_NAME prodName, PROD_PRICE prodPrice, PROD_IMAGE prodImage, PROD_DETAIL prodDetail,
 	PROD_CAPACITY prodCapacity, PROD_SUPPLIER prodSupplier, PROD_DEL_FEE prodDelFee, RECOMMEND recommend, EMPLOYEE_ID employeeId, CTGR ctgr
-	from products
+	from products)
+<where>
+	<if test="startEndPageDTO != null">
+		rn between #{startEndPageDTO.startRow} and #{startEndPageDTO.endRow}
+	</if>
+</where>	
+  
+
+
+
 </select>
 
+<select id="getGoodsCount" resultType="int">
+	select count(*) from products
+</select>
 
 <!-- id는 primary key -->
 <!-- result는 일반 컬럼 -->

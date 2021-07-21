@@ -1,5 +1,7 @@
 package controller.main;
 
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,12 +29,12 @@ public class LoginController {
 	LoginService loginService;
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String login(LoginCommand loginCommand, Errors errors, HttpSession session) { // 로그인: 세션 필요
+	public String login(LoginCommand loginCommand, Errors errors, HttpSession session, HttpServletResponse response) { // 로그인: 세션 필요
 		new LoginCommandValidator().validate(loginCommand, errors);
 		if (errors.hasErrors()) { // 에러가 있다면 에러를 출력하도록 메인으로 보냄
 			return "main/main";
 		}
-		loginService.login1(loginCommand, errors, session);
+		loginService.login1(loginCommand, errors, session, response);
 		if (errors.hasErrors()) { // 에러가 있다면 에러를 출력하도록 메인으로 보냄
 			return "main/main";
 		}
@@ -40,7 +42,11 @@ public class LoginController {
 	}
 	
 	@RequestMapping("logOut")
-	public String logOut(HttpSession session) {
+	public String logOut(HttpSession session, HttpServletResponse response) {
+		Cookie cookie = new Cookie("autoLogin","");  
+		cookie.setPath("/");
+		cookie.setMaxAge(0);
+		response.addCookie(cookie);	
 		session.invalidate();
 		return "redirect:/";
 	}

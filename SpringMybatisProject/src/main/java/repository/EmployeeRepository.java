@@ -29,9 +29,13 @@ public class EmployeeRepository {
 		return sqlSession.selectOne(statement,empId);
 	}
 	
-	public List<EmployeeDTO> empList(){
+	public List<EmployeeDTO> empList(EmployeeDTO dto){
 		statement = namespace + ".empList";
-		return sqlSession.selectList(statement); // selectList > 알아서 List를 만든다. list에 들어갈 제네릭 타입이 뭔지만 알려주기
+		return sqlSession.selectList(statement, dto); // selectList > 알아서 List를 만든다. list에 들어갈 제네릭 타입이 뭔지만 알려주기
+	}
+	public Integer count() {
+		statement = namespace + ".count";
+		return sqlSession.selectOne(statement);
 	}
 	
 	public void empInsert(EmployeeDTO dto) {
