@@ -91,6 +91,7 @@ table {
 			<a href="member/memList">회원리스트</a>
 			<a href="emp/empList">직원리스트</a>
 			<a href="goods/goodsList">상품리스트</a>
+			<a href="lib/libBoard">자료실</a>
 		</c:if>
 		<a href="login/logOut">로그아웃</a>
 

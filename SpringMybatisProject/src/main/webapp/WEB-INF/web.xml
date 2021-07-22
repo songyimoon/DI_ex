@@ -32,7 +32,8 @@
   			classpath:spring-mail-config.xml
   			classpath:spring-goods.xml
   			classpath:spring-notice.xml
-  			
+  			classpath:spring-library.xml
+ 		
   			</param-value>
   	</init-param>
   </servlet>
