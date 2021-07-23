@@ -8,17 +8,11 @@
 	insert into notice (NOTICE_NO, NOTICE_SUB, NOTICE_CON, NOTICE_DATE,
 	NOTICE_KIND, NOTICE_HITS, EMPLOYEE_ID
 	,NOTICE_FILE, NOTICE_ORG_FILE, NOTICE_FILE_SIZE)
-	values	
-	
+	values		
 	(PROD_SEQ.nextval,#{noticeSub},#{noticeCon},sysdate,
-	#{noticeKind},0,#{employeeId},
-	
+	#{noticeKind},0,#{employeeId},	
 	<if test="noticeFile==null">null,null,null</if>
-	<if test="noticeFile!=null">#{noticeFile},#{noticeOrgFile},#{noticeFileSize}</if>
-	)
-	
-	
-	
+	<if test="noticeFile!=null">#{noticeFile},#{noticeOrgFile},#{noticeFileSize}</if>)	
 </insert>
 
 <select id="libList" resultType="model.LibraryDTO">
@@ -44,8 +38,18 @@
 
 <update id="libModify" parameterType="model.LibraryDTO">
 	update notice
-	set NOTICE_SUB = #{noticeSub}, NOTICE_CON =#{noticeCon}
-	where NOTICE_NO = #{noticeNo} and NOTICE_KIND ='자료실'
+	set NOTICE_SUB = #{noticeSub}, NOTICE_CON = #{noticeCon},
+	    notice_org_file = 
+	    	<if test="noticeOrgFile != null">#{noticeOrgFile}</if>
+			<if test="noticeOrgFile == null">null</if>, 
+		notice_file_size = 
+			<if test="noticeFileSize != null">#{noticeFileSize}</if>
+			<if test="noticeFileSize == null">null</if>,
+		NOTICE_FILE = 
+			<if test="noticeFile != null">#{noticeFile}</if>
+			<if test="noticeFile == null">null</if>
+	where NOTICE_NO = #{noticeNo} and  NOTICE_KIND = '자료실'
+
 </update>
 
 <delete id="libDel" parameterType="string">

@@ -30,12 +30,10 @@ table{
 조회수:  ${dto.noticeHits}<br/>
 등록자:  ${dto.employeeId}<br/>
 파일: <br />
-
 	<c:forTokens items="${dto.noticeOrgFile }" delims="," var="fileName" varStatus="idx">
 		<a href="fileDown?str=${dto.noticeFile.split(',')[idx.index]}&org=${fileName}">${fileName }</a>
 		/ ${dto.noticeFileSize.split(',')[idx.index]}바이트<br />
 	</c:forTokens>
-
 <a href="libModify?noticeNo=${dto.noticeNo }">수정</a>
 </body>
 </html>

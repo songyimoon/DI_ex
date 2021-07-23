@@ -14,6 +14,7 @@ import model.PaymentDTO;
 import model.ProductCartDTO;
 import model.PurchaseDTO;
 import model.ReviewDTO;
+import model.WishDTO;
 
 public class GoodsRepository {
 	@Autowired
@@ -118,5 +119,16 @@ public class GoodsRepository {
 		statement = namepspace + ".getGoodsCount";
 		return sqlSession.selectOne(statement);
 	}
+	public int wishAdd(WishDTO dto) {
+		statement = namepspace + ".wishAdd";
+		sqlSession.insert(statement, dto);
+		statement = namepspace + ".wishCount";
+		return sqlSession.selectOne(statement,dto);
+	}
+	public Integer wishCount(WishDTO dto) {
+		statement = namepspace + ".wishCount";
+		return sqlSession.selectOne(statement,dto);
+	}
+
 }
 

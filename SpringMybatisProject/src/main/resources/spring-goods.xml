@@ -25,6 +25,7 @@
 	<bean class="service.goods.GoodsReviewService" />
 	<bean class="service.goods.GoodsCartDeleteService" />
 	<bean class="service.goods.GoodsCartRemoveService" />
+	<bean class="service.goods.GoodsWishService" />
 
 
 

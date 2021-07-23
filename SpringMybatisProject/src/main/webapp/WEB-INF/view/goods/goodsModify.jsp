@@ -86,7 +86,7 @@ function fileDel(btn){
       $("#fileDel1").val($(btn).parent().children("#fileName").text().trim() + "," + delFile)
    }else{
       $(btn).attr("value","삭제");
-      fileName = $(btn).parent().children("#fileName").text().trim()+",";
+      fileName = $("#fileDel1").parent().children("#fileName").text().trim()+",";
       $("#fileDel1").val(delFile.replace(fileName,""));
    }
 }

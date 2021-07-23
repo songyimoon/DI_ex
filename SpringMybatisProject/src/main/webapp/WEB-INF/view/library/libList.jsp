@@ -30,12 +30,11 @@ table{
 <tr><th>번호</th><th>제목</th><th>등록일</th><th>조회수</th></tr>
 <c:forEach items="${list }" var="dto" varStatus="cnt">
 
-<tr><td>${cnt.count }</td><td><a href="libraryInfo?noticeNo=${dto.noticeNo }">${dto.noticeSub }</a></td>
-<td> <fmt:formatDate value="${dto.noticeDate }" type="date" pattern="yyyy-MM-dd"/>  </td>
-
-
-<td>${dto.noticeHits }</td></tr>
-
+<tr><td align="center">${cnt.count }</td>
+	<td align="center"><a href="libraryInfo?noticeNo=${dto.noticeNo }">${dto.noticeSub }</a></td>
+	<td align="center"> <fmt:formatDate value="${dto.noticeDate }" type="date" pattern="yyyy-MM-dd"/>  </td>
+	<td align="center">${dto.noticeHits }</td>
+	</tr>
 </c:forEach>
 
 

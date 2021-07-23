@@ -248,4 +248,23 @@ update cart
 
 
 
+<select id="wishCount" parameterType="model.WishDTO" resultType="int">
+	select count(*) from wish
+	where prod_num = #{prodNum} and mem_id =#{memId}
+</select>
+
+
+<insert id="wishAdd" parameterType="model.WishDTO" useGeneratedKeys="false">
+	merge into wish w
+		using (select PROD_NUM from products where PROD_NUM = #{prodNum}) p
+		on (w.PROD_NUM = p.PROD_NUM and w.MEM_ID = #{memId})
+	when matched then
+		update set w.CK = 1111
+		delete where (w.PROD_NUM = #{prodNum} and w.MEM_ID = #{memId})
+	when not matched then
+		insert (w.PROD_NUM, w.MEM_ID)
+		values (#{prodNum}, #{memId})
+</insert>
+
+
 </mapper>

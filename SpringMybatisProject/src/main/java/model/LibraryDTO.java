@@ -14,7 +14,6 @@ public class LibraryDTO {
 		String noticeOrgFile;
         String noticeFileSize;
 		
-		
 		public String getNoticeOrgFile() {
 			return noticeOrgFile;
 		}

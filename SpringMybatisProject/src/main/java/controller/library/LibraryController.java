@@ -59,13 +59,14 @@ public class LibraryController {
 		return "library/libModify";
 	}
 	@RequestMapping(value = "libModifyOk", method = RequestMethod.POST)
-	public String libModifyOk(LibraryCommand libraryCommand) {
-		libraryModifyService.libModify(libraryCommand);
+	public String libModifyOk(LibraryCommand libraryCommand, HttpSession session) {
+		libraryModifyService.libModify(libraryCommand,session);
 		return "redirect:libraryInfo?noticeNo="+libraryCommand.getNoticeNo();
-	}
+	}	
+
 	@RequestMapping("libDel")
-	public String libDel(@RequestParam(value = "noticeNo") String noticeNo) {
-		libraryDeleteService.libDel(noticeNo);
+	public String libDel(@RequestParam(value = "noticeNo") String noticeNo, HttpSession session) {
+		libraryDeleteService.libDel(noticeNo, session);
 		return "redirect:libBoard";
 	}
 	@RequestMapping("fileDown")
@@ -76,4 +77,5 @@ public class LibraryController {
 		FileDownLoad fileDownLoad = new FileDownLoad();
 		fileDownLoad.fileDownLoad(path, store,original,request,response);
 	}
+
 }

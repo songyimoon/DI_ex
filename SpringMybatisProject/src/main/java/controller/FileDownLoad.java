@@ -21,23 +21,17 @@ public class FileDownLoad {
 			originalFileName = URLEncoder.encode(original, "utf-8");
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
-		}
-		
-		response.setContentType("application/octet-stream; charset=utf-8");
-		
+		}		
+		response.setContentType("application/octet-stream; charset=utf-8");	
 		// originalFileName으로 파일을 받기 위해 이름 설정
 		response.setHeader("Content-Disposition", "attachment;filename=\""+originalFileName+"\";");
-		response.setHeader("Content-Transfer-Encoding", "binary");
-		
+		response.setHeader("Content-Transfer-Encoding", "binary");	
 		// 다운로드하기 위한 저장된 파일
-		File file = new File(RealPath+"/"+store);
-		
+		File file = new File(RealPath+"/"+store);	
 		// 파일이 웹브라우저에서 다운로드되도록 하기 위한 객체
-		ServletOutputStream out1 = null;
-		
+		ServletOutputStream out1 = null;	
 		// 파일을 웹브라우저에 전송전송
-		FileInputStream fis = null;
-		
+		FileInputStream fis = null;	
 		try {
 			out1 = response.getOutputStream();
 			fis = new FileInputStream(file);
@@ -49,11 +43,8 @@ public class FileDownLoad {
 			e.printStackTrace();
 		} finally {
 			if(fis!=null) {
-				try {
-					fis.close();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
+				try {fis.close();}
+				catch (IOException e) {e.printStackTrace();}
 			}
 		}
 	}
