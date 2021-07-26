@@ -21,6 +21,7 @@ public class LoginService {
 	public void login1(LoginCommand loginCommand, Errors errors, HttpSession session, HttpServletResponse response) {
 		String userId = loginCommand.getUserId();
 		AuthInfoDTO authInfo = loginRepository.login(userId);
+		
 		if(authInfo == null) {
 			errors.rejectValue("userId", "notId");
 		}else {

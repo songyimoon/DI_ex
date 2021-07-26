@@ -60,7 +60,7 @@ public class EmployeeController {
 		return "employee/employeeInfo";
 	}
 
-	@RequestMapping(value = "empList", method = RequestMethod.GET)
+	@RequestMapping("empList")
 	public String empList(Model model, @RequestParam(value = "page", defaultValue = "1") int page) {
 		employeeListService.empList(model, page);
 		return "employee/employeeList";
