@@ -5,7 +5,7 @@
  	  	 http://www.springframework.org/schema/beans
          http://www.springframework.org/schema/beans/spring-beans.xsd">
          
-	<bean class="controller.notice.NoticeController"></bean>
+	<bean class="controller.notice.NoticeController"/>
 	<bean class="repository.NoticeRepository"/>
 	<bean class="service.notice.NoticeEmpIdService"/>
 	<bean class="service.notice.NoticeListService"/>

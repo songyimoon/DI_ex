@@ -29,7 +29,7 @@ table{
 </head>
 <body>
 
-<form:form method="post" name="frm" modelAttribute="memberCommand"> 
+
 아이디 : ${memberCommand.memId }<br/>
 이름 : ${memberCommand.memName }<br/>
 생년월일 : <fmt:formatDate value="${memberCommand.memBirth }" type="date" pattern="yyyy-MM-dd"/><br/>
@@ -46,7 +46,7 @@ table{
 		<c:if test="${memberCommand.memEmailCk == 'N' }">
 		이메일수신 거부
 		</c:if>
-</form:form>		
+ 	
 <br/>
 
 <a href="memMypageInfoModify">수정</a>
