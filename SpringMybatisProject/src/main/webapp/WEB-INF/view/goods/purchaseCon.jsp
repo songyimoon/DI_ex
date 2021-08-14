@@ -21,7 +21,6 @@ table{
   border: 1px solid;
   border-spacing: 8px;
 }
-
 </style>
 </head>
 <body>

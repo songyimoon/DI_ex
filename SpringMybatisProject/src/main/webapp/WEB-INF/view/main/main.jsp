@@ -37,8 +37,7 @@ table {
 
 			<table align="center" width="500" >
 				<tr>
-					<td colspan="3" align="center"> 아이디저장 <input type="checkbox" name="idStore" <c:if test="${!empty isId }">checked</c:if>/> 
-				
+					<td colspan="3" align="center"> 아이디저장 <input type="checkbox" name="idStore" <c:if test="${!empty isId }">checked</c:if>/> 				
 					
 					 | 자동로그인  <input type="checkbox" name="autoLogin"/> </td>
 				</tr>
