@@ -19,7 +19,6 @@ import validator.LoginCommandValidator;
 public class LoginController {
 	
 	
-	
 	@RequestMapping(method = RequestMethod.GET)
 	public String main() {
 		return "redirect:/";
