@@ -28,7 +28,7 @@ table{
 <table align="center">
 	<tr><th>아이디</th>  
 		<td><input type="text" name="memId"/>&nbsp;&nbsp;${errMemId }</td></tr>		   
-	<tr><th>이메일</th>  
+	<tr><th>이메일</th>     
 		<td><input type="email" name="memEmail"/>&nbsp;&nbsp;${errEmail }</td></tr>
 	<tr><td colspan="2" align="center"><input type="submit" value="비밀번호 찾기"></td></tr>
 </table>
